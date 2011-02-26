@@ -1,0 +1,57 @@
+config = 
+{
+    // General settings.
+    application = 
+    {
+        frequency = 20;
+        timestep = 0.5;
+    };
+
+    // Noise generataor settings.
+    generator = 
+    {
+        octaves = 1;
+    };
+
+    // Background settings.
+    background = 
+    {
+        size = 0.05;
+        size_delta = 0.01;
+        fill_method = "corner";
+        offset  = 
+        {
+            delta = 0.01;
+            red = 0.1;
+            green = 0.2;
+            blue = 0.3;
+        };
+    };
+
+    // Display configuration.
+    display = 
+    {
+        // Screen dimensions.
+        screen = 
+        {
+            width = 800;
+            height = 600;
+        };
+
+        // World coordinates.
+        world = 
+        {
+            width = 1.0;
+            height = 1.0;
+        };
+
+        // Background color. 
+        bg = 
+        {
+            red = 0.0;
+            green = 0.0;
+            blue = 0.0;
+        };
+    };
+};
+
