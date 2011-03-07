@@ -19,6 +19,17 @@ bool Background::Init()
 
 void Background::Render()
 {
+	RenderTest();
+	//RenderBackground();
+}
+
+void Background::RenderBackground()
+{
+	// TODO : Background display implementation.
+}
+
+void Background::RenderTest()
+{
     // render a blue square as background.
     glPushMatrix();
     glLoadIdentity();

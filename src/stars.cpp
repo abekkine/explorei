@@ -18,6 +18,17 @@ bool Stars::Init()
 
 void Stars::Render()
 {
+	RenderTest();
+	//RenderStars();
+}
+
+void Stars::RenderStars()
+{
+	// TODO : Stars display implementation.
+}
+
+void Stars::RenderTest()
+{
     // render a yellow square as stars.
     glPushMatrix();
     glLoadIdentity();

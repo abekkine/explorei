@@ -27,6 +27,17 @@ void Panel::Resize( int width, int height )
 
 void Panel::Render()
 {
+	RenderTest();
+	//RenderPanel();
+}
+
+void Panel::RenderPanel()
+{
+	// TODO : Panel display implementation.
+}
+
+void Panel::RenderTest()
+{
     glPushMatrix();
     glLoadIdentity();
     glTranslatef( 0.15, 0.35, 0.0 );
@@ -34,8 +45,8 @@ void Panel::Render()
     glBegin( GL_QUADS );
         glVertex2f( 0.0, 0.0 );
         glVertex2f( 0.1, 0.0 );
-        glVertex2f( 0.1,  0.1 );
-        glVertex2f( 0.0,  0.1 );
+        glVertex2f( 0.1, 0.1 );
+        glVertex2f( 0.0, 0.1 );
     glEnd();
     glPopMatrix();
 }

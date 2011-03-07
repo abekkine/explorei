@@ -11,6 +11,8 @@ class Dust
 
     private:
         // Methods
+		void RenderTest();
+		void RenderDust();
 
     private:
         // Members

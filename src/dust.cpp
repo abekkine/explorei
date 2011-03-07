@@ -18,6 +18,16 @@ bool Dust::Init()
 
 void Dust::Render()
 {
+	RenderTest();
+	//RenderDust();
+}
+
+void Dust::RenderDust()
+{
+}
+
+void Dust::RenderTest()
+{
     glPushMatrix();
     glLoadIdentity();
     glTranslatef( -0.05, 0.35, 0.0 );

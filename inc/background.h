@@ -11,6 +11,8 @@ class Background
 
     private:
         // Methods.
+		void RenderTest();
+		void RenderBackground();
 
     private:
         // Members.

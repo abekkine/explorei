@@ -11,6 +11,8 @@ class Parameter
 
     private:
         // Methods
+		void RenderTest();
+		void RenderParam();
 
     private:
         // Members

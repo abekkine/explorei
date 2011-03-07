@@ -19,6 +19,16 @@ bool Parameter::Init()
 
 void Parameter::Render()
 {
+	RenderTest();
+	//RenderParam();
+}
+
+void Parameter::RenderParam()
+{
+}
+
+void Parameter::RenderTest()
+{
     glPushMatrix();
     glLoadIdentity();
     glTranslatef( 0.35, 0.35, 0.0 );

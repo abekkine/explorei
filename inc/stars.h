@@ -11,6 +11,8 @@ class Stars
 
     private:
         // Methods.
+		void RenderTest();
+		void RenderStars();
 
     public:
         // Members.

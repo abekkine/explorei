@@ -14,6 +14,8 @@ class Panel
 
     private:
         // Methods
+		void RenderPanel();
+		void RenderTest();
 
     private:
         // Members
