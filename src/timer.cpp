@@ -2,17 +2,33 @@
 
 Timer::Timer()
 {
+	initVars();
+	Reset();
 }
 
 Timer::~Timer()
 {
 }
 
-void Timer::Reset()
+void Timer::initVars()
 {
+	_currentTime = 0.0;
+	_startTime = 0.0;
 }
 
-float Timer::GetElapsed()
+double Timer::CurrentTime()
 {
-    return 0.0;
+	_currentTime = omp_get_wtime();
+
+	return _currentTime;
+}
+
+void Timer::Reset()
+{
+	_startTime = CurrentTime();
+}
+
+double Timer::GetElapsed()
+{
+    return CurrentTime() - _startTime;
 }
