@@ -14,11 +14,18 @@ class Panel
 
     private:
         // Methods
+		void Defaults();
 		void RenderPanel();
 		void RenderTest();
 
     private:
         // Members
+		int _margin;
+		int _panel_left;
+		int _panel_right;
+		int _panel_bottom;
+		int _panel_top;
+		int _panel_percent;
 };
 
 #endif

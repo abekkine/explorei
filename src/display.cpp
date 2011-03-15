@@ -60,6 +60,8 @@ bool Display::Init()
     bool result = false;
     int rc;
 
+    InitComponents();
+
     rc = SDL_Init( SDL_INIT_VIDEO );
     if( rc < 0 )
     {
@@ -79,8 +81,6 @@ bool Display::Init()
             InitGL();
 
             Reshape( _screen->w, _screen->h );
-
-            InitComponents();
 
             VersionMessage();
 
@@ -167,7 +167,10 @@ void Display::Reshape( int width, int height )
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
-    _panel->Resize( width, height );
+	if( _panel_ready && _panel_enable )
+	{
+		    _panel->Resize( width, height );
+	}
 }
 
 void Display::UpdateViewport()
@@ -226,16 +229,18 @@ void Display::Render()
         _stars->Render();
     }
 
-    if( _panel_ready && _panel_enable )
-    {
-        _panel->Render();
-    }
-
     if( _param_ready && _param_enable )
     {
         _param->Render();
     }
     
+    if( _panel_ready && _panel_enable )
+    {
+		OrthoBegin();
+        _panel->Render();
+		OrthoEnd();
+    }
+
     if( _writer_ready && _writer_enable )
     {
 		OrthoBegin();
