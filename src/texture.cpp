@@ -1,5 +1,8 @@
 #include <texture.h>
 
+bool Texture::_ready = false;
+bool Texture::_enable = false;
+
 Texture::Texture()
 {
 	Defaults();

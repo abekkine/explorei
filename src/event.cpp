@@ -1,5 +1,8 @@
 #include <event.h>
 
+bool Event::_ready = false;
+bool Event::_enable = false;
+
 Event::Event()
 {
 }

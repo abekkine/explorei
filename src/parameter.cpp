@@ -1,6 +1,9 @@
 #include <GL/gl.h>
 #include <parameter.h>
 
+bool Parameter::_ready = false;
+bool Parameter::_enable = false;
+
 Parameter::Parameter()
 {
 }

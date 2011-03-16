@@ -14,6 +14,11 @@ class Dust
 		void RenderTest();
 		void RenderDust();
 
+	public:
+		// Control Members.
+		static bool _ready;
+		static bool _enable;
+
     private:
         // Members
 };

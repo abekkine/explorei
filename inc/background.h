@@ -14,6 +14,10 @@ class Background
 		void RenderTest();
 		void RenderBackground();
 
+	public:
+		static bool _ready;
+		static bool _enable;
+
     private:
         // Members.
 };

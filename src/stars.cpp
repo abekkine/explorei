@@ -1,6 +1,9 @@
 #include <GL/gl.h>
 #include <stars.h>
 
+bool Stars::_ready = false;
+bool Stars::_enable = false;
+
 Stars::Stars()
 {
 }

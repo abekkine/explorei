@@ -2,6 +2,9 @@
 #include <GL/gl.h>
 #include <background.h>
 
+bool Background::_ready = false;
+bool Background::_enable = false;
+
 Background::Background()
 {
 }

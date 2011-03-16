@@ -1,5 +1,8 @@
 #include <writer.h>
 
+bool Writer::_ready = false;
+bool Writer::_enable = false;
+
 Writer* Writer::_instance = NULL;
 
 Writer* Writer::GetInstance()
@@ -71,8 +74,11 @@ void Writer::Render()
 {
     for( _iMessage = _message_list.begin(); _iMessage != _message_list.end(); ++_iMessage )
     {
-        _a_message = *_iMessage;       
-        _font->Print( _a_message->x, _a_message->y, _a_message->text );
+        _a_message = *_iMessage;
+		if( *(_a_message->control) == true )
+		{
+	        _font->Print( _a_message->x, _a_message->y, _a_message->text );
+		}
     }
 }
 

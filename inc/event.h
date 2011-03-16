@@ -71,6 +71,11 @@ class Event
         void PanMode( bool value );
         void ZoomMode( bool value );
 
+	public:
+		// Control Members.
+		static bool _ready;
+		static bool _enable;
+
     private:
         // Members.
         int _event_code;

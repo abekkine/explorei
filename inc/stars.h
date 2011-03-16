@@ -14,7 +14,12 @@ class Stars
 		void RenderTest();
 		void RenderStars();
 
-    public:
+	public:
+		// Control Members.
+		static bool _ready;
+		static bool _enable;
+
+    private:
         // Members.
 };
 

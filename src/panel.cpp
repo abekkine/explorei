@@ -2,6 +2,9 @@
 #include <version.h>
 #include <panel.h>
 
+bool Panel::_ready = false;
+bool Panel::_enable = false;
+
 Panel::Panel()
 {
 	Defaults();
@@ -98,6 +101,7 @@ void Panel::DisplayVersion()
 	_versionMsg.x = 0;
 	_versionMsg.y = 0;
 	_versionMsg.text = std::string( VERSION_STRING );
+	_versionMsg.control = &Panel::_enable;
 
 	_writer->AddDynamic( &_versionMsg );
 }

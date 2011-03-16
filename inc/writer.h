@@ -14,6 +14,7 @@ class Writer
             int x;
             int y;
             std::string text;
+			bool* control;
             bool internal;
         } MessageDisplayType;
 
@@ -32,6 +33,11 @@ class Writer
     private:
         // Methods.
         void Defaults();
+
+	public:
+		// Control Members.
+		static bool _ready;
+		static bool _enable;
         
     private:
         // Members.

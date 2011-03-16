@@ -14,6 +14,11 @@ class Parameter
 		void RenderTest();
 		void RenderParam();
 
+	public:
+		// Control Members.
+		static bool _ready;
+		static bool _enable;
+
     private:
         // Members
 };

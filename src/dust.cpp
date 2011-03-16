@@ -1,6 +1,9 @@
 #include <GL/gl.h>
 #include <dust.h>
 
+bool Dust::_ready = false;
+bool Dust::_enable = false;
+
 Dust::Dust()
 {
 }

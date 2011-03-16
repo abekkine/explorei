@@ -21,6 +21,11 @@ class Panel
 		void RenderTest();
 		void DisplayVersion();
 
+	public:
+		// Control Members
+		static bool _ready;
+		static bool _enable;
+
     private:
         // Members
 		Writer* _writer;

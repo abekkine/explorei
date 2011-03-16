@@ -92,37 +92,37 @@ bool Display::Init()
 void Display::InitComponents()
 {
     _texture = new Texture();
-    _texture_ready = _texture->Init();
-    _texture_enable = true;
+    Texture::_ready = _texture->Init();
+    Texture::_enable = true;
 
 	_writer = Writer::GetInstance();
-    _writer_ready = _writer->Init();
-    _writer_enable = true;
+    Writer::_ready = _writer->Init();
+    Writer::_enable = true;
     
     _panel = new Panel();
     // Location and percentage of panel.
-    _panel_ready = _panel->Init( "bottom", 20 );
-    _panel_enable = true;
+    Panel::_ready = _panel->Init( "bottom", 20 );
+    Panel::_enable = true;
 
     _event = new Event();
-    _event_ready = _event->Init();
-    _event_enable = true;
+    Event::_ready = _event->Init();
+    Event::_enable = true;
 
     _background = new Background();
-    _background_ready = _background->Init();
-    _background_enable = true;
+    Background::_ready = _background->Init();
+    Background::_enable = true;
 
     _dust = new Dust();
-    _dust_ready = _dust->Init();
-    _dust_enable = true;
+    Dust::_ready = _dust->Init();
+    Dust::_enable = true;
 
     _stars = new Stars();
-    _stars_ready = _stars->Init();
-    _stars_enable = true;
+    Stars::_ready = _stars->Init();
+    Stars::_enable = true;
 
     _param = new Parameter();
-    _param_ready = _param->Init();
-    _param_enable = true;
+    Parameter::_ready = _param->Init();
+    Parameter::_enable = true;
 }
 
 void Display::InitGL()
@@ -165,7 +165,7 @@ void Display::Reshape( int width, int height )
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
-	if( _panel_ready && _panel_enable )
+	if( Panel::_ready && Panel::_enable )
 	{
 		    _panel->Resize( width, height );
 	}
@@ -212,34 +212,34 @@ void Display::PostRender()
 
 void Display::Render()
 {
-    if( _background_ready && _background_enable )
+    if( Background::_ready && Background::_enable )
     {
         _background->Render();
     }
 
-    if( _dust_ready && _dust_enable )
+    if( Dust::_ready && Dust::_enable )
     {
         _dust->Render();
     }
 
-    if( _stars_ready && _stars_enable )
+    if( Stars::_ready && Stars::_enable )
     {
         _stars->Render();
     }
 
-    if( _param_ready && _param_enable )
+    if( Parameter::_ready && Parameter::_enable )
     {
         _param->Render();
     }
     
-    if( _panel_ready && _panel_enable )
+    if( Panel::_ready && Panel::_enable )
     {
 		OrthoBegin();
         _panel->Render();
 		OrthoEnd();
     }
 
-    if( _writer_ready && _writer_enable )
+    if( Writer::_ready && Writer::_enable )
     {
 		OrthoBegin();
 		_writer->Render();
@@ -253,7 +253,7 @@ void Display::Update()
     Render();
     PostRender();
 
-    if( _event_ready && _event_enable )
+    if( Event::_ready && Event::_enable )
     {
         _event->Update();
         
@@ -460,7 +460,7 @@ void Display::ToggleBackground()
     //DEBUG
     puts( "ToggleBackground()" );
 
-    _background_enable ^= 1;
+    Background::_enable ^= 1;
 }
 
 void Display::ToggleFontTest()
@@ -480,7 +480,7 @@ void Display::TogglePanel()
     //DEBUG
     puts( "TogglePanel()" );
 
-    _panel_enable ^= 1;
+    Panel::_enable ^= 1;
 }
 
 void Display::ToggleStars()
@@ -488,7 +488,7 @@ void Display::ToggleStars()
     //DEBUG
     puts( "ToggleStars()" );
 
-    _stars_enable ^= 1;
+    Stars::_enable ^= 1;
 }
 
 void Display::ToggleDust()
@@ -496,7 +496,7 @@ void Display::ToggleDust()
     //DEBUG
     puts( "ToggleDust()" );
 
-    _dust_enable ^= 1;
+    Dust::_enable ^= 1;
 }
 
 void Display::ToggleParamDisplay()
@@ -504,7 +504,7 @@ void Display::ToggleParamDisplay()
     //DEBUG
     puts( "ToggleParamDisplay()" );
 
-    _param_enable ^= 1;
+    Parameter::_enable ^= 1;
 }
 
 void Display::ToggleWireframe()
