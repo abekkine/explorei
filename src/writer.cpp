@@ -1,5 +1,17 @@
 #include <writer.h>
 
+Writer* Writer::_instance = NULL;
+
+Writer* Writer::GetInstance()
+{
+	if( _instance == NULL )
+	{
+		_instance = new Writer();
+	}
+	
+	return _instance;
+}
+
 Writer::Writer()
 {
     Defaults();
