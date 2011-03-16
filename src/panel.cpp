@@ -1,4 +1,5 @@
 #include <GL/gl.h>
+#include <version.h>
 #include <panel.h>
 
 Panel::Panel()
@@ -29,6 +30,10 @@ bool Panel::Init( std::string location, int percentage )
     location = location;
     percentage = percentage;
 
+	_writer = Writer::GetInstance();
+
+	DisplayVersion();
+
     return result;
 }
 
@@ -38,12 +43,18 @@ void Panel::Resize( int width, int height )
 	_panel_right = width - _margin;
 	_panel_bottom = height - _margin;
 	_panel_top = height * ( 100 - _panel_percent ) / 100.0;
+
+	_versionMsg.x = _panel_left + 4;
+	_versionMsg.y = _panel_top + 16;
 }
 
 void Panel::Render()
 {
-	//RenderTest();
+#ifdef DISPLAY_DEBUG
+	RenderTest();
+#else
 	RenderPanel();
+#endif
 }
 
 void Panel::RenderPanel()
@@ -65,8 +76,6 @@ void Panel::RenderPanel()
         glVertex3d( _panel_right, _panel_bottom, 0.85 );
         glVertex3d( _panel_left, _panel_bottom, 0.85 );
     glEnd();
-
-    //DisplayInfo();
 }
 
 void Panel::RenderTest()
@@ -84,4 +93,12 @@ void Panel::RenderTest()
     glPopMatrix();
 }
 
+void Panel::DisplayVersion()
+{
+	_versionMsg.x = 0;
+	_versionMsg.y = 0;
+	_versionMsg.text = std::string( VERSION_STRING );
+
+	_writer->AddDynamic( &_versionMsg );
+}
 

@@ -82,8 +82,6 @@ bool Display::Init()
 
             Reshape( _screen->w, _screen->h );
 
-            VersionMessage();
-
             result = true;
         }
     }
@@ -97,7 +95,7 @@ void Display::InitComponents()
     _texture_ready = _texture->Init();
     _texture_enable = true;
 
-    _writer = new Writer();
+	_writer = Writer::GetInstance();
     _writer_ready = _writer->Init();
     _writer_enable = true;
     
@@ -515,7 +513,3 @@ void Display::ToggleWireframe()
     puts( "ToggleWireframe()" );
 }
 
-void Display::VersionMessage()
-{
-    _writer->AddStatic( 10, 16, VERSION_STRING );
-}

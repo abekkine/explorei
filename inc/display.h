@@ -62,8 +62,6 @@ class Display
         void ToggleParamDisplay();
         void ToggleWireframe();
 
-        void VersionMessage();
-
     private:
         // Components.
 
