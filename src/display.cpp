@@ -109,7 +109,7 @@ void Display::InitComponents()
     Event::_enable = true;
 
     _background = new Background();
-    Background::_ready = _background->Init();
+    Background::_ready = _background->Init( &_viewport );
     Background::_enable = true;
 
     _dust = new Dust();

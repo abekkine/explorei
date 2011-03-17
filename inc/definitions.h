@@ -1,6 +1,12 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+typedef enum 
+{ 
+    FILLMETHOD_CENTER, 
+    FILLMETHOD_CORNER 
+} FillMethodType;
+
 //! @brief Volume structure to encapsulate viewing volumes such as viewport.
 struct Volume
 {
