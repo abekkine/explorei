@@ -22,9 +22,15 @@ bool Background::Init( Volume* viewport )
 
 	_config = Config::GetInstance();
 
-	_height = _config->background_tile_size;
 	_size = _config->background_tile_size;
-	_halfSide = _config->background_tile_size;
+	_height = 0.866 * _size;
+	_halfSide = 0.5 * _size;
+	_brightness = 0.2;
+	_colorMethod = FILLMETHOD_CORNER;
+	
+	_red_offset = _config->background_red_offset;
+	_green_offset = _config->background_green_offset;
+	_blue_offset = _config->background_blue_offset;
 
 	_generator = new Generator();
 	_generator->SetOctaves( 4 );
