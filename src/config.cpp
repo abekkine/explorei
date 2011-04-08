@@ -43,10 +43,20 @@ bool Config::Read( std::string configFile )
     }
     else
     {
-        fprintf( stderr, "%s:%d - %s\n",
-            config_error_file( &_config ),
-            config_error_line( &_config ),
-            config_error_text( &_config ) );
+        config_error_t error_type;
+        error_type = config_error_type( &_config );
+
+        if( error_type == CONFIG_ERR_FILE_IO )
+        {
+            fprintf( stderr, "\nConfig File Error.\n\n" );
+        }
+        else
+        {
+            fprintf( stderr, "%s:%d - %s\n",
+                config_error_file( &_config ),
+                config_error_line( &_config ),
+                config_error_text( &_config ) );
+        }
 
         config_destroy( &_config );
 
