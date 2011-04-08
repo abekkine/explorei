@@ -65,19 +65,19 @@ void Panel::RenderPanel()
     // Background
     glColor4f( 0.0f, 0.0f, 0.5f, 0.5f );
     glBegin( GL_QUADS );
-        glVertex3d( _panel_left, _panel_top, 0.8 );
-        glVertex3d( _panel_right, _panel_top, 0.8 );
-        glVertex3d( _panel_right, _panel_bottom, 0.8 );
-        glVertex3d( _panel_left, _panel_bottom, 0.8 );
+        glVertex2d( _panel_left, _panel_top );
+        glVertex2d( _panel_right, _panel_top );
+        glVertex2d( _panel_right, _panel_bottom );
+        glVertex2d( _panel_left, _panel_bottom );
     glEnd();
 
     // Frame
     glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
     glBegin( GL_LINE_LOOP );
-        glVertex3d( _panel_left, _panel_top, 0.85 );
-        glVertex3d( _panel_right, _panel_top, 0.85 );
-        glVertex3d( _panel_right, _panel_bottom, 0.85 );
-        glVertex3d( _panel_left, _panel_bottom, 0.85 );
+        glVertex2d( _panel_left, _panel_top );
+        glVertex2d( _panel_right, _panel_top );
+        glVertex2d( _panel_right, _panel_bottom );
+        glVertex2d( _panel_left, _panel_bottom );
     glEnd();
 }
 

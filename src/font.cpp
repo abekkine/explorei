@@ -36,14 +36,10 @@ void Font::SelectFont( std::string name, int size )
 
 void Font::Print( int x, int y, std::string text )
 {
-	glDisable( GL_DEPTH_TEST );
-
     //  Force all text to white color.
     glColor3f( 1.0, 1.0, 1.0 );
 
     glRasterPos2i( x, y );
     _font->Render( text.c_str() );
-
-	glEnable( GL_DEPTH_TEST );
 }
 

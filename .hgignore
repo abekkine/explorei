@@ -1,5 +1,7 @@
 syntax: glob
 
+.sconsign.dblite
+bin/explore
 *.pyc
 inc/version.h
 .*.swp

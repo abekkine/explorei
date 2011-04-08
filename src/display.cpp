@@ -374,6 +374,8 @@ bool Display::CheckQuitCondition()
 
 void Display::OrthoBegin()
 {
+    glDisable( GL_DEPTH_TEST );
+
     glMatrixMode( GL_PROJECTION );
     glPushMatrix();
     glLoadIdentity();
@@ -386,6 +388,8 @@ void Display::OrthoEnd()
     glMatrixMode( GL_PROJECTION );
     glPopMatrix();
     glMatrixMode( GL_MODELVIEW );
+
+    glEnable( GL_DEPTH_TEST );
 }
 
 void Display::CheckError()
