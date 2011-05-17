@@ -12,7 +12,7 @@ class Event
         ~Event();
         bool Init();
         bool Update();
-        int GetEventCode();
+	int CheckEventCode();
         int GetCommandCode();
         int GetKeyCode();
         void GetMousePosition( int& mouse_x, int& mouse_y );

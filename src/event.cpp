@@ -43,7 +43,7 @@ bool Event::Update()
     
     _event_code = NO_EVENT;
 
-	Poll();
+    Poll();
     CommandProcess();
 
     return result;
@@ -300,17 +300,16 @@ void Event::Poll()
     }
 }
 
-int Event::GetEventCode()
+int Event::CheckEventCode()
 {
-	_event_code = NO_EVENT;
-	
-	if( !_event_queue.empty() )
-	{
-		_event_code = _event_queue.front();
-		_event_queue.pop();
-	}
+    int result = NO_EVENT;
 
-	return _event_code;
+    if( !_event_queue.empty() )
+    {
+        result = _event_queue.front();
+    }
+
+    return result;
 }
 
 int Event::GetCommandCode()

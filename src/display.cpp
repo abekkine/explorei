@@ -347,7 +347,7 @@ void Display::ProcessCommands()
 
 void Display::ProcessEvents()
 {
-	int eventCode = _event->GetEventCode();
+	int eventCode = _event->CheckEventCode();
 	
 	switch( eventCode )
 	{
