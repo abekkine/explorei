@@ -125,7 +125,7 @@ void Config::ReadBackground()
         config_setting_lookup_float( _setting, "size_delta", &background_tile_delta );
         config_setting_lookup_string( _setting, "fill_method", &background_fill_method_ptr );
 
-        background_fill_method = new char[ strlen( background_fill_method_ptr ) ];
+        background_fill_method = new char[ 1 + strlen( background_fill_method_ptr ) ];
         strcpy( background_fill_method, background_fill_method_ptr );
 
         ReadBackgroundOffsets();
