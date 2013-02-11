@@ -44,6 +44,10 @@ bool Event::Update()
     _event_code = NO_EVENT;
 
     Poll();
+
+//DEBUG
+    printf( "eQueue(%d)\n", _event_queue.size() );
+//END
     CommandProcess();
 
     return result;
@@ -52,8 +56,6 @@ bool Event::Update()
 void Event::PanMode( bool value )
 {
     _pan_mode = value;
-    //DEBUG
-    printf( "_pan_mode(%d)\n", _pan_mode );
 }
 
 void Event::PanCommand()
@@ -105,8 +107,6 @@ void Event::PanUpdate()
 void Event::ZoomMode( bool value )
 {
     _zoom_mode = value;
-    //DEBUG
-    printf( "_zoom_mode(%d)\n", _zoom_mode );
 }
 
 void Event::ZoomUpdate()
