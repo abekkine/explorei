@@ -2,11 +2,17 @@
 
 Application::Application()
 {
+//DEBUG
+    puts("Application::Application()");
+//END
     Defaults();
 }
 
 Application::~Application()
 {
+//DEBUG
+    puts("Application::~Application()");
+//END
     delete _display;
     delete _timer;
 }

@@ -2,6 +2,9 @@
 
 Font::Font()
 {
+//DEBUG
+    puts("Font::Font()");
+//END
 	_font_name = "freemono.ttf";
 	_font_folder = "../fonts/";
 	_font_size = 12;
@@ -9,6 +12,10 @@ Font::Font()
 
 Font::~Font()
 {
+//DEBUG
+    puts("Font::~Font()");
+//END
+    delete _font;
 }
 
 bool Font::Init()

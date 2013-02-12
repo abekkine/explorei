@@ -1,13 +1,21 @@
+#include <stdio.h>
+
 #include <timer.h>
 
 Timer::Timer()
 {
+//DEBUG
+    puts("Timer::Timer()");
+//END
 	initVars();
 	Reset();
 }
 
 Timer::~Timer()
 {
+//DEBUG
+    puts("Timer::~Timer()");
+//END
 }
 
 void Timer::initVars()

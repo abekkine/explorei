@@ -5,10 +5,16 @@ bool Event::_enable = false;
 
 Event::Event()
 {
+//DEBUG
+    puts("Event::Event()");
+//END
 }
 
 Event::~Event()
 {
+//DEBUG
+    puts("Event::~Event()");
+//END
 }
 
 void Event::Defaults()

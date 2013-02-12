@@ -17,6 +17,9 @@ Config* Config::GetInstance()
 
 Config::Config()
 {
+//DEBUG
+    puts("Config::Config()");
+//END
     Init();
     Defaults();
 }
@@ -24,7 +27,10 @@ Config::Config()
 Config::~Config()
 {
     // TODO :
-    delete [] background_fill_method;
+//DEBUG
+    puts("Config::~Config()");
+//END
+//    delete [] background_fill_method;
 }
 
 bool Config::Read( std::string configFile )
@@ -81,7 +87,7 @@ void Config::Defaults()
 	// Background
 	background_tile_size = 0.1;
 	background_tile_delta = 0.01;
-	background_fill_method_ptr = NULL;
+//	background_fill_method_ptr = NULL;
 	background_fill_method = NULL;
 	
 	// Background Offsets
@@ -124,17 +130,17 @@ void Config::ReadBackground()
     {
         config_setting_lookup_float( _setting, "size", &background_tile_size );
         config_setting_lookup_float( _setting, "size_delta", &background_tile_delta );
-        config_setting_lookup_string( _setting, "fill_method", &background_fill_method_ptr );
+//        config_setting_lookup_string( _setting, "fill_method", &background_fill_method_ptr );
 
-        background_fill_method = new char[ 1 + strlen( background_fill_method_ptr ) ];
-        strcpy( background_fill_method, background_fill_method_ptr );
+//        background_fill_method = new char[ 1 + strlen( background_fill_method_ptr ) ];
+//        strcpy( background_fill_method, background_fill_method_ptr );
 
         ReadBackgroundOffsets();
     }
 	else
 	{
-		background_fill_method = new char[ strlen( "corner" ) ];
-		strcpy( background_fill_method, "corner" );
+//		background_fill_method = new char[ strlen( "corner" ) ];
+//		strcpy( background_fill_method, "corner" );
 	}
 }
 
@@ -218,7 +224,7 @@ void Config::Dump()
     printf( "    background_green_offset = %f\n", background_green_offset );
     printf( "    background_blue_offset = %f\n", background_blue_offset );
     printf( "    background_offset_delta = %f\n", background_offset_delta );
-    printf( "    background_fill_method = \"%s\"\n", background_fill_method );
+//    printf( "    background_fill_method = \"%s\"\n", background_fill_method );
     // Generator settings.
     puts( "  Generator:" );
     printf( "    generator_octaves = %d\n", generator_octaves );

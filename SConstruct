@@ -31,6 +31,7 @@ env.Append( LIBS = [ 'ftgl' ] )
 env.Append( LIBS = [ 'config' ] )
 env.Append( LIBS = [ 'noise' ] )
 env.Append( LIBS = [ 'gomp' ] )
+env.Append( LIBS = [ 'm' ] )
 
 files = Glob( 'src/*.cpp' )
 

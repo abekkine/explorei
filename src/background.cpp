@@ -8,10 +8,17 @@ bool Background::_enable = false;
 
 Background::Background()
 {
+//DEBUG
+    puts("Background::Background()");
+//END
 }
 
 Background::~Background()
 {
+//DEBUG
+    puts("Background::~Background()");
+//END
+    delete _generator;
 }
 
 bool Background::Init( Volume* viewport )
@@ -90,6 +97,7 @@ void Background::VertexColor( float x, float y )
     glColor3f( _brightness * _generator->GetValue( x, y, _red_offset ),
                _brightness * _generator->GetValue( x, y, _green_offset ),
                _brightness * _generator->GetValue( x, y, _blue_offset ) );
+
 }
 
 void Background::Mesh( float x, float y )

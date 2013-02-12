@@ -7,11 +7,17 @@ bool Panel::_enable = false;
 
 Panel::Panel()
 {
+//DEBUG
+    puts("Panel::Panel()");
+//END
 	Defaults();
 }
 
 Panel::~Panel()
 {
+//DEBUG
+    puts("Panel::~Panel()");
+//END
 }
 
 void Panel::Defaults()

@@ -21,10 +21,9 @@ int main()
 
         app->Run();
     }
-    else {
-        delete app;
-        delete config;
-    }
+
+    delete app;
+    delete config;
 
     return 0;
 }

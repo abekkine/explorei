@@ -5,11 +5,17 @@ bool Texture::_enable = false;
 
 Texture::Texture()
 {
+//DEBUG
+    puts("Texture::Texture()");
+//END
 	Defaults();
 }
 
 Texture::~Texture()
 {
+//DEBUG
+    puts("Texture::~Texture()");
+//END
 }
 
 void Texture::Defaults()

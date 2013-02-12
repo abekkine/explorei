@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <GL/gl.h>
 #include <dust.h>
 
@@ -6,10 +8,16 @@ bool Dust::_enable = false;
 
 Dust::Dust()
 {
+//DEBUG
+    puts("Dust::Dust()");
+//END
 }
 
 Dust::~Dust()
 {
+//DEBUG
+    puts("Dust::~Dust()");
+//END
 }
 
 bool Dust::Init()

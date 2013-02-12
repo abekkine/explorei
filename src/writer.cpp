@@ -17,11 +17,17 @@ Writer* Writer::GetInstance()
 
 Writer::Writer()
 {
+//DEBUG
+    puts("Writer::Writer()");
+//END
     Defaults();
 }
 
 Writer::~Writer()
 {
+//DEBUG
+    puts("Writer::~Writer()");
+//END
     for( _iMessage = _message_list.begin(); _iMessage != _message_list.end(); ++_iMessage )
     {
         _a_message = *_iMessage;
@@ -30,6 +36,8 @@ Writer::~Writer()
             delete _a_message;
         }
     }
+
+    delete _font;
 }
 
 void Writer::Defaults()

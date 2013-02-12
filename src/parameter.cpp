@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <GL/gl.h>
 #include <parameter.h>
 
@@ -6,10 +8,16 @@ bool Parameter::_enable = false;
 
 Parameter::Parameter()
 {
+//DEBUG
+    puts("Parameter::Parameter()");
+//END
 }
 
 Parameter::~Parameter()
 {
+//DEBUG
+    puts("Parameter::~Parameter()");
+//END
 }
 
 bool Parameter::Init()

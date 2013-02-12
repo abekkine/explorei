@@ -3,11 +3,25 @@
 
 Display::Display()
 {
+//DEBUG
+    puts("Display::Display()");
+//END
     Defaults();
 }
 
 Display::~Display()
 {
+//DEBUG
+    puts("Display::~Display()");
+//END
+    delete _texture;
+    delete _writer;
+    delete _panel;
+    delete _event;
+    delete _background;
+    delete _dust;
+    delete _stars;
+    delete _param;
 }
 
 void Display::Defaults()
@@ -116,17 +130,17 @@ void Display::InitComponents()
     Background::_ready = _background->Init( &_viewport );
     Background::_enable = true;
 
-    _dust = new Dust();
-    Dust::_ready = _dust->Init();
-    Dust::_enable = true;
+    //_dust = new Dust();
+    //Dust::_ready = _dust->Init();
+    //Dust::_enable = true;
 
-    _stars = new Stars();
-    Stars::_ready = _stars->Init();
-    Stars::_enable = true;
+    //_stars = new Stars();
+    //Stars::_ready = _stars->Init();
+    //Stars::_enable = true;
 
-    _param = new Parameter();
-    Parameter::_ready = _param->Init();
-    Parameter::_enable = true;
+    //_param = new Parameter();
+    //Parameter::_ready = _param->Init();
+    //Parameter::_enable = true;
 }
 
 void Display::InitGL()

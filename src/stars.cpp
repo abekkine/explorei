@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <GL/gl.h>
 #include <stars.h>
 
@@ -6,10 +8,16 @@ bool Stars::_enable = false;
 
 Stars::Stars()
 {
+//DEBUG
+    puts("Stars::Stars()");
+//END
 }
 
 Stars::~Stars()
 {
+//DEBUG
+    puts("Stars::~Stars()");
+//END
 }
 
 bool Stars::Init()

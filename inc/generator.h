@@ -3,8 +3,6 @@
 
 #include <libnoise/noise.h>
 
-using namespace noise;
-
 class Generator
 {
 	public:
@@ -16,7 +14,7 @@ class Generator
 
 	private:
 		// Members
-		module::Perlin _noiseModule;
+		noise::module::Perlin _noiseModule;
 
 	private:
 		// Methods
