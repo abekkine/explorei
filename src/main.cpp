@@ -17,9 +17,14 @@ int main()
     
     Application* app = new Application();
 
-    app->Initialize();
+    if( app->Initialize() ) {
 
-    app->Run();
+        app->Run();
+    }
+    else {
+        delete app;
+        delete config;
+    }
 
     return 0;
 }

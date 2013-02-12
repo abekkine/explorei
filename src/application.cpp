@@ -7,6 +7,8 @@ Application::Application()
 
 Application::~Application()
 {
+    delete _display;
+    delete _timer;
 }
 
 void Application::Defaults()

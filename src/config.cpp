@@ -24,6 +24,7 @@ Config::Config()
 Config::~Config()
 {
     // TODO :
+    delete [] background_fill_method;
 }
 
 bool Config::Read( std::string configFile )
