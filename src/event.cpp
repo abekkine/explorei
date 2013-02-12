@@ -45,9 +45,6 @@ bool Event::Update()
 
     Poll();
 
-//DEBUG
-    printf( "eQueue(%d)\n", _event_queue.size() );
-//END
     CommandProcess();
 
     return result;

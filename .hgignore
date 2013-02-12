@@ -7,3 +7,6 @@ inc/version.h
 .*.swp
 *.o
 *.conf
+*.log
+*.supp
+

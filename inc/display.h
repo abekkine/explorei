@@ -67,43 +67,27 @@ class Display
 
         // Texture object.
         Texture* _texture;
-        bool _texture_ready;
-        bool _texture_enable;
 
 		// Text writer object.
 		Writer* _writer;
-		bool _writer_ready;
-		bool _writer_enable;
 
         // Display panel.
         Panel* _panel;
-        bool _panel_ready;
-        bool _panel_enable;
 
         // User events.
         Event* _event;
-        bool _event_ready;
-        bool _event_enable;
 
         // Background layer.
         Background* _background;
-        bool _background_ready;
-        bool _background_enable;
 
         // Space dust layer.
         Dust* _dust;
-        bool _dust_ready;
-        bool _dust_enable;
 
         // Stars layer.
         Stars* _stars;
-        bool _stars_ready;
-        bool _stars_enable;
 
         // User accessible parameters.
         Parameter* _param;
-        bool _param_ready;
-        bool _param_enable;
 
     private:
         // Members

@@ -46,6 +46,10 @@ void Display::Defaults()
     _stars = NULL;
     _param = NULL;
 
+    _viewport.left = -0.5;
+    _viewport.right = 0.5;
+    _viewport.bottom = -0.5;
+    _viewport.top = 0.5;
     _viewport.near = 0.0;
     _viewport.far = 1.0;
 
