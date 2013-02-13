@@ -14,14 +14,10 @@ Display::~Display()
 //DEBUG
     puts("Display::~Display()");
 //END
-    delete _texture;
     delete _writer;
     delete _panel;
     delete _event;
     delete _background;
-    delete _dust;
-    delete _stars;
-    delete _param;
 }
 
 void Display::Defaults()
@@ -56,9 +52,6 @@ void Display::Defaults()
     _panel = NULL;
     _event = NULL;
     _background = NULL;
-    _dust = NULL;
-    _stars = NULL;
-    _param = NULL;
 
     _viewport.left = -0.5;
     _viewport.right = 0.5;
@@ -109,10 +102,6 @@ bool Display::Init()
 
 void Display::InitComponents()
 {
-    _texture = new Texture();
-    Texture::_ready = _texture->Init();
-    Texture::_enable = true;
-
 	_writer = Writer::GetInstance();
     Writer::_ready = _writer->Init();
     Writer::_enable = true;
@@ -129,18 +118,6 @@ void Display::InitComponents()
     _background = new Background();
     Background::_ready = _background->Init( &_viewport );
     Background::_enable = true;
-
-    //_dust = new Dust();
-    //Dust::_ready = _dust->Init();
-    //Dust::_enable = true;
-
-    //_stars = new Stars();
-    //Stars::_ready = _stars->Init();
-    //Stars::_enable = true;
-
-    //_param = new Parameter();
-    //Parameter::_ready = _param->Init();
-    //Parameter::_enable = true;
 }
 
 void Display::InitGL()
@@ -235,21 +212,6 @@ void Display::Render()
         _background->Render();
     }
 
-    if( Dust::_ready && Dust::_enable )
-    {
-        _dust->Render();
-    }
-
-    if( Stars::_ready && Stars::_enable )
-    {
-        _stars->Render();
-    }
-
-    if( Parameter::_ready && Parameter::_enable )
-    {
-        _param->Render();
-    }
-    
     if( Panel::_ready && Panel::_enable )
     {
 		OrthoBegin();
@@ -295,52 +257,12 @@ void Display::ProcessCommands()
 
 	switch( commandCode )
 	{
-		case Event::NEXT_PARAMETER_CMD:
-			NextParameter();
-            break;
-
-		case Event::PREV_PARAMETER_CMD:
-			PrevParameter();
-            break;
-
-		case Event::NEXT_VALUE_CMD:
-			NextValue();
-            break;
-
-		case Event::PREV_VALUE_CMD:
-			PrevValue();
-            break;
-
 		case Event::TOGGLE_BACKGROUND_CMD:
 			ToggleBackground();
             break;
 
-		case Event::TOGGLE_FONT_TEST_CMD:
-			ToggleFontTest();
-            break;
-
-		case Event::TOGGLE_FPS_CMD:
-			ToggleFPS();
-            break;
-
 		case Event::TOGGLE_PANEL_CMD:
 			TogglePanel();
-            break;
-
-		case Event::TOGGLE_PLANETS_CMD:
-			ToggleStars();
-            break;
-
-        case Event::TOGGLE_DUST_CMD:
-            ToggleDust();
-            break;
-
-		case Event::TOGGLE_PARAM_DISPLAY_CMD:
-			ToggleParamDisplay();
-            break;
-
-		case Event::TOGGLE_WIREFRAME_CMD:
-			ToggleWireframe();
             break;
 
         case Event::ZOOM_COMMAND:
@@ -453,48 +375,12 @@ void Display::CheckError()
     }
 }
 
-void Display::NextParameter()
-{
-    //DEBUG
-    puts( "NextParameter()" );
-}
-
-void Display::PrevParameter()
-{
-    //DEBUG
-    puts( "PrevParameter()" );
-}
-
-void Display::NextValue()
-{
-    //DEBUG
-    puts( "NextValue()" );
-}
-
-void Display::PrevValue()
-{
-    //DEBUG
-    puts( "PrevValue()" );
-}
-
 void Display::ToggleBackground()
 {
     //DEBUG
     puts( "ToggleBackground()" );
 
     Background::_enable ^= 1;
-}
-
-void Display::ToggleFontTest()
-{
-    //DEBUG
-    puts( "ToggleFontTest()" );
-}
-
-void Display::ToggleFPS()
-{
-    //DEBUG
-    puts( "ToggleFPS" );
 }
 
 void Display::TogglePanel()
@@ -504,34 +390,3 @@ void Display::TogglePanel()
 
     Panel::_enable ^= 1;
 }
-
-void Display::ToggleStars()
-{
-    //DEBUG
-    puts( "ToggleStars()" );
-
-    Stars::_enable ^= 1;
-}
-
-void Display::ToggleDust()
-{
-    //DEBUG
-    puts( "ToggleDust()" );
-
-    Dust::_enable ^= 1;
-}
-
-void Display::ToggleParamDisplay()
-{
-    //DEBUG
-    puts( "ToggleParamDisplay()" );
-
-    Parameter::_enable ^= 1;
-}
-
-void Display::ToggleWireframe()
-{
-    //DEBUG
-    puts( "ToggleWireframe()" );
-}
-

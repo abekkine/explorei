@@ -23,7 +23,7 @@ clean_files.append( VERSION_INC )
 env.Clean( 'default', clean_files )
 
 env.ParseConfig( 'sdl-config --cflags --libs' )
-env.Append( CPPFLAGS = [ '-g', '-Wall',  '-Wextra' ] )
+env.Append( CPPFLAGS = [ '-g', '-Wall',  '-Wextra', '-Werror', '-Wfatal-errors' ] )
 env.Append( CPPPATH = [ '/usr/include/freetype2' ] )
 env.Append( CPPPATH = [ 'inc' ] )
 env.Append( LIBS = [ 'GL' ] )

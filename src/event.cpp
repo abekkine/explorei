@@ -167,38 +167,8 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
 	
 	switch( _key_code )
 	{
-		case SDLK_UP:
-			_command_code = NEXT_PARAMETER_CMD; break;
-			
-		case SDLK_DOWN:
-			_command_code = PREV_PARAMETER_CMD; break;
-			
-		case SDLK_LEFT:
-			_command_code = PREV_VALUE_CMD; break;
-			
-		case SDLK_RIGHT:
-			_command_code = NEXT_VALUE_CMD; break;
-			
 		case SDLK_b:
 			_command_code = TOGGLE_BACKGROUND_CMD; break;
-			
-		case SDLK_n:
-			_command_code = TOGGLE_PLANETS_CMD; break;
-			
-		case SDLK_t:
-			_command_code = TOGGLE_FONT_TEST_CMD; break;
-			
-		case SDLK_d:
-			_command_code = TOGGLE_PARAM_DISPLAY_CMD; break;
-			
-		case SDLK_f:
-			_command_code = TOGGLE_FPS_CMD; break;
-
-        case SDLK_v:
-            _command_code = TOGGLE_DUST_CMD; break;
-			
-		case SDLK_w:
-			_command_code = TOGGLE_WIREFRAME_CMD; break;
 			
 		case SDLK_p:
 			_command_code = TOGGLE_PANEL_CMD; break;

@@ -6,14 +6,10 @@
 
 #include <definitions.h>
 #include <config.h>
-#include <texture.h>
 #include <writer.h>
 #include <panel.h>
 #include <event.h>
 #include <background.h>
-#include <dust.h>
-#include <stars.h>
-#include <parameter.h>
 
 //! @brief Class responsible for rendering objects.
 class Display
@@ -49,24 +45,11 @@ class Display
         void ResetCommandParam();
         void ProcessCommands();
         void ProcessEvents();
-        void NextParameter();
-        void PrevParameter();
-        void NextValue();
-        void PrevValue();
         void ToggleBackground();
-        void ToggleStars();
-        void ToggleDust();
         void TogglePanel();
-        void ToggleFontTest();
-        void ToggleFPS();
-        void ToggleParamDisplay();
-        void ToggleWireframe();
 
     private:
         // Components.
-
-        // Texture object.
-        Texture* _texture;
 
 		// Text writer object.
 		Writer* _writer;
@@ -79,15 +62,6 @@ class Display
 
         // Background layer.
         Background* _background;
-
-        // Space dust layer.
-        Dust* _dust;
-
-        // Stars layer.
-        Stars* _stars;
-
-        // User accessible parameters.
-        Parameter* _param;
 
     private:
         // Members

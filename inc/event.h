@@ -35,21 +35,11 @@ class Event
 	    static const int RELEASED = 109;
 	    
         // Command Definitions.
-	    static const int NEXT_PARAMETER_CMD = 201;
-	    static const int PREV_PARAMETER_CMD = 202;
-	    static const int NEXT_VALUE_CMD = 203;
-	    static const int PREV_VALUE_CMD = 204;
 	    static const int TOGGLE_BACKGROUND_CMD = 205;
-	    static const int TOGGLE_PLANETS_CMD = 206;
-	    static const int TOGGLE_FONT_TEST_CMD = 207;
-	    static const int TOGGLE_PARAM_DISPLAY_CMD = 208;
-	    static const int TOGGLE_FPS_CMD = 209;
-	    static const int TOGGLE_WIREFRAME_CMD = 210;
 	    static const int TOGGLE_PANEL_CMD = 211;
 	    static const int QUIT_COMMAND = 212;
 	    static const int ZOOM_COMMAND = 213;
 	    static const int PAN_COMMAND = 214;
-        static const int TOGGLE_DUST_CMD = 216;
 
 		static const int NO_EVENT = -3;
 	    static const int NO_COMMAND = -2;
