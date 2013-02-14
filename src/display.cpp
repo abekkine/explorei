@@ -107,6 +107,7 @@ void Display::InitComponents()
     Writer::_enable = true;
     
     _panel = new Panel();
+
     // Location and percentage of panel.
     Panel::_ready = _panel->Init( "bottom", 20 );
     Panel::_enable = true;
@@ -237,7 +238,6 @@ void Display::Update()
     {
         _event->Update();
         
-        ProcessEvents();
         ProcessCommands();
     }
 }
@@ -251,60 +251,37 @@ void Display::ResetCommandParam()
 
 void Display::ProcessCommands()
 {
-	int commandCode = _event->GetCommandCode();
+	int commandCode; 
 
     ResetCommandParam();
 
-	switch( commandCode )
-	{
-		case Event::TOGGLE_BACKGROUND_CMD:
-			ToggleBackground();
-            break;
+    do {
+        commandCode = _event->GetCommandCode();
+        switch( commandCode ) {
 
-		case Event::TOGGLE_PANEL_CMD:
-			TogglePanel();
-            break;
+		    case Event::TOGGLE_BACKGROUND_CMD:
+    			ToggleBackground();
+                break;
 
-        case Event::ZOOM_COMMAND:
-            _event->GetMouseDelta( NULL, &_zoom_delta );
-            Reshape();
-            break;
+    		case Event::TOGGLE_PANEL_CMD:
+	    		TogglePanel();
+                break;
 
-        case Event::PAN_COMMAND:
-            _event->GetMouseDelta( &_pan_x_delta, &_pan_y_delta );
-            Reshape();
-            break;
+            case Event::ZOOM_COMMAND:
+                _event->GetMouseDelta( NULL, &_zoom_delta );
+                Reshape();
+                break;
 
-        case Event::QUIT_COMMAND:
-            _quit_condition_check = true;
-            break;
+            case Event::PAN_COMMAND:
+                _event->GetMouseDelta( &_pan_x_delta, &_pan_y_delta );
+                Reshape();
+                break;
 
-		case Event::NO_COMMAND:
-		default:
-			break;
-	}
-}
-
-void Display::ProcessEvents()
-{
-	int eventCode = _event->CheckEventCode();
-	
-	switch( eventCode )
-	{
-		case Event::KEY_EVENT:
-		case Event::MOTION_EVENT:
-		case Event::BUTTON_EVENT:
-            // Do nothing for now.
-            break;
-		
-		case Event::QUIT_EVENT:
-			_quit_condition_check = true;
-			break;
-		
-		case Event::NO_EVENT:
-		default:
-			break;
-    }
+            case Event::QUIT_COMMAND:
+                _quit_condition_check = true;
+                break;
+        }
+    } while( commandCode != Event::NO_COMMAND );
 }
 
 bool Display::CheckQuitCondition()
