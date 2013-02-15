@@ -10,6 +10,7 @@
 #include <panel.h>
 #include <event.h>
 #include <background.h>
+#include <star.h>
 
 //! @brief Class responsible for rendering objects.
 class Display
@@ -62,6 +63,9 @@ class Display
 
         // Background layer.
         Background* _background;
+
+        // Star layer.
+        //Star* _star;
 
     private:
         // Members
