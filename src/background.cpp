@@ -11,6 +11,8 @@ Background::Background()
 //DEBUG
     puts("Background::Background()");
 //END
+
+    _wireframe = false;
 }
 
 Background::~Background()
