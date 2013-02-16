@@ -22,7 +22,6 @@ class Background
 		void Triangle( float x, float y );
 		void ReverseTriangle( float x, float y );
 		void Mesh( float x, float y );
-		void GetViewport( double* left, double* right, double* top, double* bottom );
 
 	public:
 		static bool _ready;

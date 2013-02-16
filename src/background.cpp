@@ -25,7 +25,7 @@ bool Background::Init( Volume* viewport )
 {
     bool result = true;
 
-	_viewport = viewport;
+    _viewport = viewport;
 
 	_config = Config::GetInstance();
 
@@ -59,7 +59,10 @@ void Background::RenderBackground()
 	double y_begin_validated;
 	float x_step, y_step;
 
-	GetViewport( &x_begin, &x_end, &y_end, &y_begin );
+    x_begin = _viewport->left;
+    x_end = _viewport->right;
+    y_end = _viewport->top;
+    y_begin = _viewport->bottom;
 
 	x_begin_validated = floor( x_begin );
 	y_begin_validated = 2.0 * floor( 0.5 * y_begin / _height ) * _height; 
@@ -189,12 +192,4 @@ void Background::ReverseTriangle( float x, float y )
     }
 
     _vertexCount += 3;
-}
-
-void Background::GetViewport( double* left, double* right, double* top, double* bottom )
-{
-	*left = _viewport->left;
-	*right = _viewport->right;
-	*top = _viewport->top;
-	*bottom = _viewport->bottom;
 }
