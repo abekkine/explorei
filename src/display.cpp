@@ -18,7 +18,7 @@ Display::~Display()
     delete _panel;
     delete _event;
     delete _background;
-//    delete _star;
+    delete _star;
 }
 
 void Display::Defaults()
@@ -53,7 +53,7 @@ void Display::Defaults()
     _panel = NULL;
     _event = NULL;
     _background = NULL;
-    //_star = NULL;
+    _star = NULL;
 
     _viewport.left = -0.5;
     _viewport.right = 0.5;
@@ -66,6 +66,8 @@ void Display::Defaults()
     _scale_y = 1.0;
 
 	_quit_condition_check = false;
+
+    ResetCommandParam();
 }
 
 bool Display::Init()
@@ -122,9 +124,9 @@ void Display::InitComponents()
     Background::_ready = _background->Init( &_viewport );
     Background::_enable = true;
 
-//    _star = new Star();
-//    Star::_ready = _star->Init( &_viewport );
-//    Star::_enable = true;
+    _star = new Star();
+    Star::_ready = _star->Init( &_viewport );
+    Star::_enable = true;
 }
 
 void Display::InitGL()
@@ -219,10 +221,10 @@ void Display::Render()
         _background->Render();
     }
 
-    //if( Star::_ready && Star::_enable )
-    //{
-    //    _star->Render();
-    //}
+    if( Star::_ready && Star::_enable )
+    {
+        _star->Render();
+    }
 
     if( Panel::_ready && Panel::_enable )
     {

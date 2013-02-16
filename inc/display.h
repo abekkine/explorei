@@ -65,7 +65,7 @@ class Display
         Background* _background;
 
         // Star layer.
-        //Star* _star;
+        Star* _star;
 
     private:
         // Members
