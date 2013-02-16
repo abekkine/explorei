@@ -19,6 +19,9 @@ Application::~Application()
 
 void Application::Defaults()
 {
+//DEBUG
+    puts("Application::Defaults()");
+//END
     _config = 0;
     _timer = 0;
     _display = 0;
@@ -30,6 +33,9 @@ void Application::Defaults()
 
 bool Application::Initialize()
 {
+//DEBUG
+    puts("Application::Initialize()");
+//END
     bool result = false;
 
     _config = Config::GetInstance();
@@ -58,6 +64,9 @@ bool Application::Initialize()
 
 void Application::Run()
 {
+//DEBUG
+    puts("Application::Run()");
+//END
     while( _quit_condition == false )
     {
         _num_ticks = _timer->GetElapsed();
