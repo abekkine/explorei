@@ -7,8 +7,8 @@ Timer::Timer()
 //DEBUG
     puts("Timer::Timer()");
 //END
-	initVars();
-	Reset();
+    initVars();
+    Reset();
 }
 
 Timer::~Timer()
@@ -20,20 +20,20 @@ Timer::~Timer()
 
 void Timer::initVars()
 {
-	_currentTime = 0.0;
-	_startTime = 0.0;
+    _currentTime = 0.0;
+    _startTime = 0.0;
 }
 
 double Timer::CurrentTime()
 {
-	_currentTime = omp_get_wtime();
+    _currentTime = omp_get_wtime();
 
-	return _currentTime;
+    return _currentTime;
 }
 
 void Timer::Reset()
 {
-	_startTime = CurrentTime();
+    _startTime = CurrentTime();
 }
 
 double Timer::GetElapsed()

@@ -10,7 +10,7 @@ Panel::Panel()
 //DEBUG
     puts("Panel::Panel()");
 //END
-	Defaults();
+    Defaults();
 }
 
 Panel::~Panel()
@@ -22,14 +22,14 @@ Panel::~Panel()
 
 void Panel::Defaults()
 {
-	// Impossible values.
-	_panel_left = -999;
-	_panel_right = -999;
-	_panel_bottom = -999;
-	_panel_top = -999;
+    // Impossible values.
+    _panel_left = -999;
+    _panel_right = -999;
+    _panel_bottom = -999;
+    _panel_top = -999;
 
-	_margin = 10;
-	_panel_percent = 20;
+    _margin = 10;
+    _panel_percent = 20;
 }
 
 bool Panel::Init( std::string location, int percentage )
@@ -39,30 +39,30 @@ bool Panel::Init( std::string location, int percentage )
     location = location;
     percentage = percentage;
 
-	_writer = Writer::GetInstance();
+    _writer = Writer::GetInstance();
 
-	DisplayVersion();
+    DisplayVersion();
 
     return result;
 }
 
 void Panel::Resize( int width, int height )
 {
-	_panel_left = _margin;
-	_panel_right = width - _margin;
-	_panel_bottom = height - _margin;
-	_panel_top = height * ( 100 - _panel_percent ) / 100.0;
+    _panel_left = _margin;
+    _panel_right = width - _margin;
+    _panel_bottom = height - _margin;
+    _panel_top = height * ( 100 - _panel_percent ) / 100.0;
 
-	_versionMsg.x = _panel_left + 4;
-	_versionMsg.y = _panel_top + 16;
+    _versionMsg.x = _panel_left + 4;
+    _versionMsg.y = _panel_top + 16;
 }
 
 void Panel::Render()
 {
 #ifdef DISPLAY_DEBUG
-	RenderTest();
+    RenderTest();
 #else
-	RenderPanel();
+    RenderPanel();
 #endif
 }
 
@@ -104,11 +104,11 @@ void Panel::RenderTest()
 
 void Panel::DisplayVersion()
 {
-	_versionMsg.x = 0;
-	_versionMsg.y = 0;
-	_versionMsg.text = std::string( VERSION_STRING );
-	_versionMsg.control = &Panel::_enable;
+    _versionMsg.x = 0;
+    _versionMsg.y = 0;
+    _versionMsg.text = std::string( VERSION_STRING );
+    _versionMsg.control = &Panel::_enable;
 
-	_writer->AddDynamic( &_versionMsg );
+    _writer->AddDynamic( &_versionMsg );
 }
 

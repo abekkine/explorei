@@ -13,13 +13,13 @@ class Timer
 
     private:
         // Methods
-		void initVars();
-		double CurrentTime();
+        void initVars();
+        double CurrentTime();
 
     private:
         // Members
-		double _currentTime;
-		double _startTime;
+        double _currentTime;
+        double _startTime;
 };
 
 #endif

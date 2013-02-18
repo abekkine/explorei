@@ -80,37 +80,37 @@ void Config::Init()
 
 void Config::Defaults()
 {
-	// Application
-	application_frequency = 20;
-	application_timestep = 1.0;
+    // Application
+    application_frequency = 20;
+    application_timestep = 1.0;
 
-	// Background
-	background_tile_size = 0.1;
-	background_tile_delta = 0.01;
-//	background_fill_method_ptr = NULL;
-	background_fill_method = NULL;
-	
-	// Background Offsets
-	background_offset_delta = 0.01;
-	background_red_offset = 0.0;
-	background_green_offset = 0.0;
-	background_blue_offset = 0.0;
+    // Background
+    background_tile_size = 0.1;
+    background_tile_delta = 0.01;
+//    background_fill_method_ptr = NULL;
+    background_fill_method = NULL;
+    
+    // Background Offsets
+    background_offset_delta = 0.01;
+    background_red_offset = 0.0;
+    background_green_offset = 0.0;
+    background_blue_offset = 0.0;
 
-	// Generator
-	generator_octaves = 1;
+    // Generator
+    generator_octaves = 1;
 
-	// Display Screen
-	display_screen_width = 512;
-	display_screen_height = 512;
+    // Display Screen
+    display_screen_width = 512;
+    display_screen_height = 512;
 
-	// Display World
-	display_world_width = 1.0;
-	display_world_height = 1.0;
+    // Display World
+    display_world_width = 1.0;
+    display_world_height = 1.0;
 
-	// Display Color
-	display_background_red = 0.0;
-	display_background_green = 0.0;
-	display_background_blue = 0.0;
+    // Display Color
+    display_background_red = 0.0;
+    display_background_green = 0.0;
+    display_background_blue = 0.0;
 }
 
 void Config::ReadApplication()
@@ -137,11 +137,11 @@ void Config::ReadBackground()
 
         ReadBackgroundOffsets();
     }
-	else
-	{
-//		background_fill_method = new char[ strlen( "corner" ) ];
-//		strcpy( background_fill_method, "corner" );
-	}
+    else
+    {
+//        background_fill_method = new char[ strlen( "corner" ) ];
+//        strcpy( background_fill_method, "corner" );
+    }
 }
 
 void Config::ReadBackgroundOffsets()

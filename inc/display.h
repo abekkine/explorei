@@ -52,8 +52,8 @@ class Display
     private:
         // Components.
 
-		// Text writer object.
-		Writer* _writer;
+        // Text writer object.
+        Writer* _writer;
 
         // Display panel.
         Panel* _panel;

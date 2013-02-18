@@ -12,7 +12,7 @@ class Event
         ~Event();
         bool Init();
         bool Update();
-    	int CheckEventCode();
+        int CheckEventCode();
         int GetCommandCode();
         void GetMousePosition( int& mouse_x, int& mouse_y );
         void GetMouseDelta( int* dx, int* dy );
@@ -28,16 +28,16 @@ class Event
         static const int RIGHTBUTTON_RELEASED_EVENT = 103;
         static const int MIDBUTTON_PRESSED_EVENT = 104;
         static const int MIDBUTTON_RELEASED_EVENT = 105;
-	    
+        
         // Command Definitions.
-	    static const int TOGGLE_BACKGROUND_CMD = 205;
-	    static const int TOGGLE_PANEL_CMD = 211;
-	    static const int QUIT_COMMAND = 212;
-	    static const int ZOOM_COMMAND = 213;
-	    static const int PAN_COMMAND = 214;
+        static const int TOGGLE_BACKGROUND_CMD = 205;
+        static const int TOGGLE_PANEL_CMD = 211;
+        static const int QUIT_COMMAND = 212;
+        static const int ZOOM_COMMAND = 213;
+        static const int PAN_COMMAND = 214;
 
-		static const int NO_EVENT = -3;
-	    static const int NO_COMMAND = -2;
+        static const int NO_EVENT = -3;
+        static const int NO_COMMAND = -2;
         static const int UNDEFINED = -1;
         static const int TRUE = 1;
         static const int FALSE = 0;
@@ -64,10 +64,10 @@ class Event
         void PushEvent( int code );
         int PopEvent();
 
-	public:
-		// Control Members.
-		static bool _ready;
-		static bool _enable;
+    public:
+        // Control Members.
+        static bool _ready;
+        static bool _enable;
 
     private:
         // Members.
@@ -82,8 +82,8 @@ class Event
         int _mouse_delta_x;
         int _mouse_delta_y;
 
-		std::queue< int > _event_queue;
-		std::queue< int > _command_queue;
+        std::queue< int > _event_queue;
+        std::queue< int > _command_queue;
 };
 
 #endif

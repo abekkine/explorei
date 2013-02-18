@@ -116,55 +116,55 @@ void Event::CommandProcess()
 
 void Event::KeyEvent( SDL_KeyboardEvent& key )
 {
-	switch( key.keysym.sym )
-	{
-		case SDLK_b:
-			PushCommand( TOGGLE_BACKGROUND_CMD );
+    switch( key.keysym.sym )
+    {
+        case SDLK_b:
+            PushCommand( TOGGLE_BACKGROUND_CMD );
             break;
-			
-		case SDLK_p:
-			PushCommand( TOGGLE_PANEL_CMD );
+            
+        case SDLK_p:
+            PushCommand( TOGGLE_PANEL_CMD );
             break;
-			
-		case SDLK_q:
-		case SDLK_ESCAPE:
-			PushCommand( QUIT_COMMAND );
+            
+        case SDLK_q:
+        case SDLK_ESCAPE:
+            PushCommand( QUIT_COMMAND );
             break;
-		
-		default:
-			break;
-	}
+        
+        default:
+            break;
+    }
 }
 
 void Event::PushEvent( int code )
 {
-	_event_queue.push( code );
+    _event_queue.push( code );
 }
 
 int Event::PopEvent()
 {
     int code = NO_EVENT;
-	if( !_event_queue.empty() )
-	{
-		code = _event_queue.front();
-		_event_queue.pop();
-	}
+    if( !_event_queue.empty() )
+    {
+        code = _event_queue.front();
+        _event_queue.pop();
+    }
 
     return code;
 }
 
 void Event::PushCommand( int code ) 
 {
-	if( code != NO_COMMAND )
-	{
-		_command_queue.push( code );
-	}
+    if( code != NO_COMMAND )
+    {
+        _command_queue.push( code );
+    }
 }
 
 void Event::MotionEvent( SDL_MouseMotionEvent& motion )
 {
-	_mouse_x = motion.x;
-	_mouse_y = motion.y;
+    _mouse_x = motion.x;
+    _mouse_y = motion.y;
 
     PanUpdate();
     ZoomUpdate();
@@ -172,26 +172,26 @@ void Event::MotionEvent( SDL_MouseMotionEvent& motion )
 
 void Event::ButtonEvent( SDL_MouseButtonEvent& button )
 {
-	_mouse_x = button.x;
-	_mouse_y = button.y;
-	
-	switch( button.button )
-	{
-		case SDL_BUTTON_LEFT:
+    _mouse_x = button.x;
+    _mouse_y = button.y;
+    
+    switch( button.button )
+    {
+        case SDL_BUTTON_LEFT:
             ProcessLeftButton(button);
-			break;
-			
-		case SDL_BUTTON_RIGHT:
+            break;
+            
+        case SDL_BUTTON_RIGHT:
             ProcessRightButton(button);
-			break;
-			
-		case SDL_BUTTON_MIDDLE:
+            break;
+            
+        case SDL_BUTTON_MIDDLE:
             ProcessMiddleButton(button);
-			break;
-			
-		default:
-			break;
-	}
+            break;
+            
+        default:
+            break;
+    }
 }
 
 void Event::ProcessLeftButton( SDL_MouseButtonEvent& button )
@@ -268,23 +268,23 @@ void Event::ProcessMiddleButton( SDL_MouseButtonEvent& button )
 
 void Event::Poll()
 {
-	SDL_Event event;
-	
+    SDL_Event event;
+    
     while( SDL_PollEvent(&event) )
     {
         switch( event.type )
         {
             case SDL_KEYDOWN:
-				KeyEvent( event.key );
+                KeyEvent( event.key );
                 break;
 
             case SDL_MOUSEMOTION:
-				MotionEvent( event.motion );
+                MotionEvent( event.motion );
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
-				ButtonEvent( event.button );
+                ButtonEvent( event.button );
                 break;
 
             case SDL_QUIT:
@@ -308,15 +308,15 @@ int Event::CheckEventCode()
 
 int Event::GetCommandCode()
 {
-	int command_code = NO_COMMAND;
+    int command_code = NO_COMMAND;
 
-	if( !_command_queue.empty() )
-	{
-	    command_code = _command_queue.front();
-		_command_queue.pop();
-	}
+    if( !_command_queue.empty() )
+    {
+        command_code = _command_queue.front();
+        _command_queue.pop();
+    }
 
-	return command_code;
+    return command_code;
 }
 
 void Event::GetMouseDelta( int* dx, int* dy )
@@ -334,6 +334,6 @@ void Event::GetMouseDelta( int* dx, int* dy )
 
 void Event::GetMousePosition( int& mouse_x, int& mouse_y )
 {
-	mouse_x = _mouse_x;
-	mouse_y = _mouse_y;
+    mouse_x = _mouse_x;
+    mouse_y = _mouse_y;
 }

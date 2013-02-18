@@ -25,16 +25,15 @@ void Star::Defaults()
 {
     _ready = false;
     _enable = false;
+
+    _zValue = 0.0;
 }
 
 bool Star::Init( Volume* viewport )
 {
     bool result = true;
-    Volume* _viewport = viewport;
-
-//DEBUG
-    printf("_viewport->left(%f)\n", _viewport->left);
-//END
+    
+    _viewport = viewport;
 
     return result;
 }
@@ -42,25 +41,34 @@ bool Star::Init( Volume* viewport )
 void Star::Render()
 {
     //RenderTest();
-    //RenderStar();
+    RenderStar();
 }
 
 void Star::RenderTest()
 {
-    glPushMatrix();
-    glLoadIdentity();
-    glTranslatef( -0.25, 0.35, 0.0 );
-    glColor3f( 1.0, 1.0, 0.0 );
+    glColor3f( 1.0f, 0.5f, 0.0f );
     glBegin( GL_QUADS );
-        glVertex2f( 0.0, 0.0 );
-        glVertex2f( 0.1, 0.0 );
-        glVertex2f( 0.1, 0.1 );
-        glVertex2f( 0.0, 0.1 );
+        glVertex2d( 10, 10 );
+        glVertex2d( 50, 10 );
+        glVertex2d( 50, 50 );
+        glVertex2d( 10, 50 );
     glEnd();
-    glPopMatrix();
+
+    glColor3f( 1.0f, 1.0f, 1.0f );
+    glBegin( GL_LINE_LOOP );
+        glVertex2d( 10, 10 );
+        glVertex2d( 50, 10 );
+        glVertex2d( 50, 50 );
+        glVertex2d( 10, 50 );
+    glEnd();
 }
 
 void Star::RenderStar()
 {
+    glColor3f( 1.0, 1.0, 1.0 );
+    glPointSize(5.0);
+    glBegin( GL_POINTS );
+        glVertex3d( 0.0, 0.0, _zValue );
+    glEnd();
 }
 

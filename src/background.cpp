@@ -27,58 +27,59 @@ bool Background::Init( Volume* viewport )
 {
     bool result = true;
 
+    _zValue = -0.9;
     _viewport = viewport;
 
-	_config = Config::GetInstance();
+    _config = Config::GetInstance();
 
-	_size = _config->background_tile_size;
-	_height = 0.866 * _size;
-	_halfSide = 0.5 * _size;
-	_brightness = 0.2;
-	_colorMethod = FILLMETHOD_CORNER;
-	
-	_red_offset = _config->background_red_offset;
-	_green_offset = _config->background_green_offset;
-	_blue_offset = _config->background_blue_offset;
+    _size = _config->background_tile_size;
+    _height = 0.866 * _size;
+    _halfSide = 0.5 * _size;
+    _brightness = 0.2;
+    _colorMethod = FILLMETHOD_CORNER;
+    
+    _red_offset = _config->background_red_offset;
+    _green_offset = _config->background_green_offset;
+    _blue_offset = _config->background_blue_offset;
 
-	_generator = new Generator();
-	_generator->SetOctaves( 4 );
+    _generator = new Generator();
+    _generator->SetOctaves( 4 );
 
     return result;
 }
 
 void Background::Render()
 {
-	//RenderTest();
-	RenderBackground();
+    //RenderTest();
+    RenderBackground();
 }
 
 void Background::RenderBackground()
 {
-	double x_begin, x_end;
-	double y_begin, y_end;
-	double x_begin_validated;
-	double y_begin_validated;
-	float x_step, y_step;
+    double x_begin, x_end;
+    double y_begin, y_end;
+    double x_begin_validated;
+    double y_begin_validated;
+    float x_step, y_step;
 
     x_begin = _viewport->left;
     x_end = _viewport->right;
     y_end = _viewport->top;
     y_begin = _viewport->bottom;
 
-	x_begin_validated = floor( x_begin );
-	y_begin_validated = 2.0 * floor( 0.5 * y_begin / _height ) * _height; 
+    x_begin_validated = floor( x_begin );
+    y_begin_validated = 2.0 * floor( 0.5 * y_begin / _height ) * _height; 
 
-	if( Background::_enable )
-	{
-		for( x_step = x_begin_validated; x_step < x_end; x_step += _size )
-		{
-			for( y_step = y_begin_validated; y_step < y_end; y_step += 2.0*_height )
-			{
-				Mesh( x_step, y_step );
-			}
-		}
-	}
+    if( Background::_enable )
+    {
+        for( x_step = x_begin_validated; x_step < x_end; x_step += _size )
+        {
+            for( y_step = y_begin_validated; y_step < y_end; y_step += 2.0*_height )
+            {
+                Mesh( x_step, y_step );
+            }
+        }
+    }
 }
 
 void Background::RenderTest()
@@ -119,9 +120,9 @@ void Background::Triangle( float x, float y )
     {
         glColor3f( 0.15, 0.15, 0.15 );
         glBegin( GL_LINE_LOOP );
-        glVertex3d( x, y, 0.0 );
-        glVertex3d( x+ _halfSide, y+ _height, 0.0 );
-        glVertex3d( x+ _size, y, 0.0 );
+        glVertex3d( x, y, _zValue );
+        glVertex3d( x+ _halfSide, y+ _height, _zValue );
+        glVertex3d( x+ _size, y, _zValue );
         glEnd();
     }
     else
@@ -137,17 +138,17 @@ void Background::Triangle( float x, float y )
         {
             VertexColor( x, y );
         }
-        glVertex3d( x, y, 0.0 );
+        glVertex3d( x, y, _zValue );
         if ( _colorMethod == FILLMETHOD_CORNER )
         {
             VertexColor( x+_halfSide, y+_height );
         }
-        glVertex3d( x+ _halfSide, y+ _height, 0.0 );
+        glVertex3d( x+ _halfSide, y+ _height, _zValue );
         if ( _colorMethod == FILLMETHOD_CORNER )
         {
             VertexColor( x+_size, y );
         }
-        glVertex3d( x+ _size, y, 0.0 );
+        glVertex3d( x+ _size, y, _zValue );
         glEnd();
 
     }
@@ -161,9 +162,9 @@ void Background::ReverseTriangle( float x, float y )
     {
         glColor3f( 0.15, 0.15, 0.15 );
         glBegin( GL_LINE_LOOP );
-        glVertex3d( x, y, 0.0 );
-        glVertex3d( x+ _size, y, 0.0 );
-        glVertex3d( x+ _halfSide, y-_height, 0.0 );
+        glVertex3d( x, y, _zValue );
+        glVertex3d( x+ _size, y, _zValue );
+        glVertex3d( x+ _halfSide, y-_height, _zValue );
         glEnd();
     }
     else
@@ -179,17 +180,17 @@ void Background::ReverseTriangle( float x, float y )
         {
             VertexColor( x, y );
         }
-        glVertex3d( x, y, 0.0 );
+        glVertex3d( x, y, _zValue );
         if ( _colorMethod == FILLMETHOD_CORNER )
         {
             VertexColor( x+_size, y );
         }
-        glVertex3d( x+ _size, y, 0.0 );
+        glVertex3d( x+ _size, y, _zValue );
         if ( _colorMethod == FILLMETHOD_CORNER )
         {
             VertexColor( x+_halfSide, y-_height );
         }
-        glVertex3d( x+ _halfSide, y-_height, 0.0 );
+        glVertex3d( x+ _halfSide, y-_height, _zValue );
         glEnd();
     }
 

@@ -14,13 +14,13 @@ class Writer
             int x;
             int y;
             std::string text;
-			bool* control;
+            bool* control;
             bool internal;
         } MessageDisplayType;
 
-	private:
-		static Writer* _instance;
-		Writer();
+    private:
+        static Writer* _instance;
+        Writer();
 
     public:
         static Writer* GetInstance();
@@ -34,10 +34,10 @@ class Writer
         // Methods.
         void Defaults();
 
-	public:
-		// Control Members.
-		static bool _ready;
-		static bool _enable;
+    public:
+        // Control Members.
+        static bool _ready;
+        static bool _enable;
         
     private:
         // Members.

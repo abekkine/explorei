@@ -59,13 +59,13 @@ void Display::Defaults()
     _viewport.right = 0.5;
     _viewport.bottom = -0.5;
     _viewport.top = 0.5;
-    _viewport.near = 0.0;
+    _viewport.near = -1.0;
     _viewport.far = 1.0;
 
     _scale_x = 1.0;
     _scale_y = 1.0;
 
-	_quit_condition_check = false;
+    _quit_condition_check = false;
 
     ResetCommandParam();
 }
@@ -106,7 +106,7 @@ bool Display::Init()
 
 void Display::InitComponents()
 {
-	_writer = Writer::GetInstance();
+    _writer = Writer::GetInstance();
     Writer::_ready = _writer->Init();
     Writer::_enable = true;
     
@@ -169,10 +169,10 @@ void Display::Reshape( int width, int height )
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
-	if( Panel::_ready && Panel::_enable )
-	{
-		    _panel->Resize( width, height );
-	}
+    if( Panel::_ready && Panel::_enable )
+    {
+            _panel->Resize( width, height );
+    }
 }
 
 void Display::UpdateViewport()
@@ -228,17 +228,17 @@ void Display::Render()
 
     if( Panel::_ready && Panel::_enable )
     {
-		OrthoBegin();
+        OrthoBegin();
         _panel->Render();
-		OrthoEnd();
+        OrthoEnd();
     }
 
     if( Writer::_ready && Writer::_enable )
     {
-		OrthoBegin();
-		_writer->Render();
-		OrthoEnd();
-	}
+        OrthoBegin();
+        _writer->Render();
+        OrthoEnd();
+    }
 }
 
 void Display::Update()
@@ -264,7 +264,7 @@ void Display::ResetCommandParam()
 
 void Display::ProcessCommands()
 {
-	int commandCode; 
+    int commandCode; 
 
     ResetCommandParam();
 
@@ -272,12 +272,12 @@ void Display::ProcessCommands()
         commandCode = _event->GetCommandCode();
         switch( commandCode ) {
 
-		    case Event::TOGGLE_BACKGROUND_CMD:
-    			ToggleBackground();
+            case Event::TOGGLE_BACKGROUND_CMD:
+                ToggleBackground();
                 break;
 
-    		case Event::TOGGLE_PANEL_CMD:
-	    		TogglePanel();
+            case Event::TOGGLE_PANEL_CMD:
+                TogglePanel();
                 break;
 
             case Event::ZOOM_COMMAND:
@@ -299,7 +299,7 @@ void Display::ProcessCommands()
 
 bool Display::CheckQuitCondition()
 {
-	return _quit_condition_check;
+    return _quit_condition_check;
 }
 
 void Display::OrthoBegin()

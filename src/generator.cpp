@@ -7,7 +7,7 @@ Generator::Generator()
 //DEBUG
     puts("Generator::Generator()");
 //END
-	initVars();
+    initVars();
 }
 
 Generator::~Generator()
@@ -19,16 +19,16 @@ Generator::~Generator()
 
 double Generator::GetValue( double x, double y, double z )
 {
-	return _noiseModule.GetValue( x, y, z );
+    return _noiseModule.GetValue( x, y, z );
 }
 
 void Generator::SetOctaves( int n )
 {
-	_noiseModule.SetOctaveCount( n );
+    _noiseModule.SetOctaveCount( n );
 }
 
 void Generator::initVars()
 {
-	// TODO : Nothing to initiate?
+    // TODO : Nothing to initiate?
 }
 

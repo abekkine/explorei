@@ -7,12 +7,12 @@ Writer* Writer::_instance = NULL;
 
 Writer* Writer::GetInstance()
 {
-	if( _instance == NULL )
-	{
-		_instance = new Writer();
-	}
-	
-	return _instance;
+    if( _instance == NULL )
+    {
+        _instance = new Writer();
+    }
+    
+    return _instance;
 }
 
 Writer::Writer()
@@ -83,10 +83,10 @@ void Writer::Render()
     for( _iMessage = _message_list.begin(); _iMessage != _message_list.end(); ++_iMessage )
     {
         _a_message = *_iMessage;
-		if( *(_a_message->control) == true )
-		{
-	        _font->Print( _a_message->x, _a_message->y, _a_message->text );
-		}
+        if( *(_a_message->control) == true )
+        {
+            _font->Print( _a_message->x, _a_message->y, _a_message->text );
+        }
     }
 }
 

@@ -16,29 +16,29 @@ class Panel
 
     private:
         // Methods
-		void Defaults();
-		void RenderPanel();
-		void RenderTest();
-		void DisplayVersion();
+        void Defaults();
+        void RenderPanel();
+        void RenderTest();
+        void DisplayVersion();
 
-	public:
-		// Control Members
-		static bool _ready;
-		static bool _enable;
+    public:
+        // Control Members
+        static bool _ready;
+        static bool _enable;
 
     private:
         // Members
-		Writer* _writer;
-		int _margin;
-		int _panel_left;
-		int _panel_right;
-		int _panel_bottom;
-		int _panel_top;
-		int _panel_percent;
+        Writer* _writer;
+        int _margin;
+        int _panel_left;
+        int _panel_right;
+        int _panel_bottom;
+        int _panel_top;
+        int _panel_percent;
 
-	private:
-		// Messages
-		Writer::MessageDisplayType _versionMsg;
+    private:
+        // Messages
+        Writer::MessageDisplayType _versionMsg;
 };
 
 #endif

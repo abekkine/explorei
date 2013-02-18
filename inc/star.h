@@ -24,6 +24,8 @@ class Star
 
     private:
         // Member.
+        double _zValue;
+        Volume* _viewport;
 };
 
 #endif
