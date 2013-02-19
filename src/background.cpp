@@ -43,9 +43,19 @@ bool Background::Init( Volume* viewport )
     _blue_offset = _config->background_blue_offset;
 
     _generator = new Generator();
+// TODO : magic number
     _generator->SetOctaves( 4 );
 
     return result;
+}
+
+void Background::ToggleWireframe()
+{
+    if( _wireframe ) {
+        _wireframe = false;
+    } else {
+        _wireframe = true;
+    }
 }
 
 void Background::Render()

@@ -12,6 +12,7 @@ class Background
         ~Background();
         bool Init( Volume* viewport );
         void Render();
+        void ToggleWireframe();
 
     private:
         // Methods.

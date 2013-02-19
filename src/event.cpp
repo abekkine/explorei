@@ -118,6 +118,10 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
 {
     switch( key.keysym.sym )
     {
+        case SDLK_w:
+            PushCommand( TOGGLE_WIREFRAME_CMD );
+            break;
+
         case SDLK_b:
             PushCommand( TOGGLE_BACKGROUND_CMD );
             break;

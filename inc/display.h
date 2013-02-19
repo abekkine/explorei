@@ -46,6 +46,7 @@ class Display
         void ResetCommandParam();
         void ProcessCommands();
         void ProcessEvents();
+        void ToggleWireframe();
         void ToggleBackground();
         void TogglePanel();
 

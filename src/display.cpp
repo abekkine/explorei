@@ -272,6 +272,10 @@ void Display::ProcessCommands()
         commandCode = _event->GetCommandCode();
         switch( commandCode ) {
 
+            case Event::TOGGLE_WIREFRAME_CMD:
+                ToggleWireframe();
+                break;
+
             case Event::TOGGLE_BACKGROUND_CMD:
                 ToggleBackground();
                 break;
@@ -363,6 +367,11 @@ void Display::CheckError()
             puts( "Unknown error" );
             break;
     }
+}
+
+void Display::ToggleWireframe()
+{
+    _background->ToggleWireframe();
 }
 
 void Display::ToggleBackground()

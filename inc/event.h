@@ -30,6 +30,7 @@ class Event
         static const int MIDBUTTON_RELEASED_EVENT = 105;
         
         // Command Definitions.
+        static const int TOGGLE_WIREFRAME_CMD = 204;
         static const int TOGGLE_BACKGROUND_CMD = 205;
         static const int TOGGLE_PANEL_CMD = 211;
         static const int QUIT_COMMAND = 212;
