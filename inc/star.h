@@ -2,6 +2,7 @@
 #define STAR_H
 
 #include <definitions.h>
+#include <generator.h>
 
 class Star
 {
@@ -14,7 +15,8 @@ class Star
     private:
         // Methods.
         void RenderTest();
-        void RenderStar();
+        void RenderStarLayer();
+        void RenderSingleStar( double x, double y );
         void Defaults();
 
     public:
@@ -26,6 +28,7 @@ class Star
         // Member.
         double _zValue;
         Volume* _viewport;
+        Generator* _generator;
 };
 
 #endif
