@@ -32,11 +32,13 @@ class Display
         void Defaults();
         void InitGL();
         void InitComponents();
+        void UpdatePanAndZoomOffsets();
         void UpdateViewport();
-        void UpdateScale();
         void PreRender();
         void Render();
         void PostRender();
+        void BackgroundBegin();
+        void BackgroundEnd();
         void OrthoBegin();
         void OrthoEnd();
         void CheckError();
@@ -79,6 +81,7 @@ class Display
 
         // Viewport
         Volume _viewport;
+        Volume _viewportBG;
         // Viewport screen dimensions.
         int _screen_width;
         int _screen_height;
@@ -95,9 +98,14 @@ class Display
         // Real world / Screen Scaling.
         float _scale_x;
         float _scale_y;
+        //DEBUG
+        float _scaleBG_x;
+        float _scaleBG_y;
 
         // Zoom & Pan
         double _zoom_level;
+        //DEBUG
+        double _zoom_levelBG;
         int _zoom_delta;
         int _pan_x_delta;
         int _pan_y_delta;
@@ -105,6 +113,9 @@ class Display
         // Screen center.
         double _center_x;
         double _center_y;
+        //DEBUG
+        double _centerBG_x;
+        double _centerBG_y;
         
         // Quit condition check.
         bool _quit_condition_check;

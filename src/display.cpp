@@ -44,9 +44,14 @@ void Display::Defaults()
     // Screen center.
     _center_x = 0.0;
     _center_y = 0.0;
+    //DEBUG
+    _centerBG_x = 0.0;
+    _centerBG_y = 0.0;
 
     // Zoom defaults.
     _zoom_level = 1.0;
+    //DEBUG
+    _zoom_levelBG = 1.0;
 
     // Component defaults.
     _writer = NULL;
@@ -55,6 +60,7 @@ void Display::Defaults()
     _background = NULL;
     _star = NULL;
 
+    // Star Layer viewport
     _viewport.left = -0.5;
     _viewport.right = 0.5;
     _viewport.bottom = -0.5;
@@ -62,8 +68,19 @@ void Display::Defaults()
     _viewport.near = -1.0;
     _viewport.far = 1.0;
 
+    // Background layer viewport
+    _viewportBG.left = -0.5;
+    _viewportBG.right = 0.5;
+    _viewportBG.bottom = -0.5;
+    _viewportBG.top = 0.5;
+    _viewportBG.near = -1.0;
+    _viewportBG.far = 1.0;
+
     _scale_x = 1.0;
     _scale_y = 1.0;
+    //DEBUG
+    _scaleBG_x = 1.0;
+    _scaleBG_y = 1.0;
 
     _quit_condition_check = false;
 
@@ -121,7 +138,7 @@ void Display::InitComponents()
     Event::_enable = true;
 
     _background = new Background();
-    Background::_ready = _background->Init( &_viewport );
+    Background::_ready = _background->Init( &_viewportBG );
     Background::_enable = true;
 
     _star = new Star();
@@ -162,6 +179,7 @@ void Display::Reshape( int width, int height )
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 
+    UpdatePanAndZoomOffsets();
     UpdateViewport();
 
     glOrtho( _viewport.left, _viewport.right, _viewport.bottom, _viewport.top, _viewport.near, _viewport.far );
@@ -171,8 +189,38 @@ void Display::Reshape( int width, int height )
 
     if( Panel::_ready && Panel::_enable )
     {
-            _panel->Resize( width, height );
+        _panel->Resize( width, height );
     }
+}
+
+void Display::BackgroundBegin()
+{
+    glMatrixMode( GL_PROJECTION );
+    glPushMatrix();
+    glLoadIdentity();
+    glOrtho( _viewportBG.left, _viewportBG.right, _viewportBG.bottom, _viewportBG.top, _viewportBG.near, _viewportBG.far );
+    glMatrixMode( GL_MODELVIEW );
+}
+
+void Display::BackgroundEnd()
+{
+    glMatrixMode( GL_PROJECTION );
+    glPopMatrix();
+    glMatrixMode( GL_MODELVIEW );
+}
+
+void Display::UpdatePanAndZoomOffsets()
+{
+    _zoom_level += _zoom_delta * 0.002;
+    //DEBUG
+    _zoom_levelBG += _zoom_delta * 0.001;
+
+    _center_x -= _scale_x * _pan_x_delta;
+    _center_y -= _scale_y * _pan_y_delta;
+
+    //DEBUG
+    _centerBG_x -= _scaleBG_x * _pan_x_delta * 0.1;
+    _centerBG_y -= _scaleBG_y * _pan_y_delta * 0.1;
 }
 
 void Display::UpdateViewport()
@@ -181,25 +229,31 @@ void Display::UpdateViewport()
     double zoomed_width;
     double zoomed_height;
    
-    _zoom_level += _zoom_delta * 0.002;
-
     zoomed_width = 0.5 * _world_width * _zoom_level;
     zoomed_height = 0.5 * _world_height * _zoom_level;
 
-    UpdateScale();
-    _center_x -= _scale_x * _pan_x_delta;
-    _center_y -= _scale_y * _pan_y_delta;
+    _scale_x = (_viewport.right - _viewport.left) / (_world_width * _screen_width);
+    _scale_y = (_viewport.bottom - _viewport.top) / (_world_height * _screen_height);
 
     _viewport.left   = _center_x - zoomed_width;
     _viewport.right  = _center_x + zoomed_width;
     _viewport.top    = _center_y + zoomed_height;
     _viewport.bottom = _center_y - zoomed_height;
-}
 
-void Display::UpdateScale()
-{
-    _scale_x = (_viewport.right - _viewport.left) / (_world_width * _screen_width);
-    _scale_y = (_viewport.bottom - _viewport.top) / (_world_height * _screen_height);
+//DEBUG
+    {
+        double zw, zh;
+        zw = 0.5 * _world_width * _zoom_levelBG;
+        zh = 0.5 * _world_height * _zoom_levelBG;
+
+        _scaleBG_x = (_viewportBG.right - _viewportBG.left) / (_world_width * _screen_width);
+        _scaleBG_y = (_viewportBG.bottom - _viewportBG.top) / (_world_height * _screen_height);
+
+        _viewportBG.left = _centerBG_x - zw;
+        _viewportBG.right = _centerBG_x + zw;
+        _viewportBG.top = _centerBG_y + zh;
+        _viewportBG.bottom = _centerBG_y - zh;
+    }
 }
 
 void Display::PreRender()
@@ -218,7 +272,9 @@ void Display::Render()
 {
     if( Background::_ready && Background::_enable )
     {
+        BackgroundBegin();
         _background->Render();
+        BackgroundEnd();
     }
 
     if( Star::_ready && Star::_enable )
