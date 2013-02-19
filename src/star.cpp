@@ -95,14 +95,15 @@ void Star::RenderStarLayer()
     x_begin_rounded = floor( x_begin );
     y_begin_rounded = floor( y_begin );
 
-    x_end = _viewport->top;
-    y_end = _viewport->right;
+    x_end = _viewport->right;
+    y_end = _viewport->top;
 
-    for( x_step = x_begin_rounded; x_step < x_end; x_step += 0.05 ) {
-        for( y_step = y_begin_rounded; y_step < y_end; y_step += 0.05 ) {
+    for( x_step = x_begin_rounded; x_step < x_end; x_step += 0.25 ) {
+        for( y_step = y_begin_rounded; y_step < y_end; y_step += 0.25 ) {
             s_value = _generator->GetValue( x_step, y_step, 1.2 );
 
-            if( s_value > 0.0 ) {
+            // TODO : magic number
+            if( s_value > 0.5 && s_value < 0.6 ) {
                 RenderSingleStar(x_step, y_step);
             }
         }
