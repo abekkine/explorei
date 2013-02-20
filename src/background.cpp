@@ -27,12 +27,16 @@ bool Background::Init( Volume* viewport )
 {
     bool result = true;
 
+    //DEBUG
+    _zoom_level = 1.0;
+
     _zValue = -0.9;
     _viewport = viewport;
 
     _config = Config::GetInstance();
 
-    _size = _config->background_tile_size;
+    _size_0 = _config->background_tile_size;
+    _size = _size_0;
     _height = 0.866 * _size;
     _halfSide = 0.5 * _size;
     _brightness = 0.2;
@@ -56,6 +60,15 @@ void Background::ToggleWireframe()
     } else {
         _wireframe = true;
     }
+}
+
+//DEBUG
+void Background::SetZoomLevel( double zoom )
+{
+    _zoom_level = zoom;
+    _size = _size_0 * _zoom_level;
+    _height = 0.866 * _size;
+    _halfSide = 0.5 * _size;
 }
 
 void Background::Render()

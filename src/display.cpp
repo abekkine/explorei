@@ -214,6 +214,7 @@ void Display::UpdatePanAndZoomOffsets()
     _zoom_level += _zoom_delta * 0.002;
     //DEBUG
     _zoom_levelBG += _zoom_delta * 0.001;
+    //_background->SetZoomLevel( _zoom_levelBG);
 
     _center_x -= _scale_x * _pan_x_delta;
     _center_y -= _scale_y * _pan_y_delta;

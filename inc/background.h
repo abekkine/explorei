@@ -13,6 +13,7 @@ class Background
         bool Init( Volume* viewport );
         void Render();
         void ToggleWireframe();
+        void SetZoomLevel( double zoom );
 
     private:
         // Methods.
@@ -34,9 +35,14 @@ class Background
         Volume* _viewport;
         Generator* _generator;
 
+        //DEBUG
+        double _zoom_level;
+
         int _vertexCount;
         bool _wireframe;
         double _zValue;
+        //DEBUG
+        float _size_0;
         float _size;
         float _height;
         float _halfSide;
