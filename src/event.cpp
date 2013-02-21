@@ -1,4 +1,6 @@
 #include <event.h>
+#include <panel.h>
+#include <writer.h>
 
 bool Event::_ready = false;
 bool Event::_enable = false;
@@ -30,6 +32,9 @@ void Event::Defaults()
     _zoom_start_pos = DEFAULT_INT;
     _mouse_delta_x = DEFAULT_INT;
     _mouse_delta_y = DEFAULT_INT;
+
+    _speed_factor = 1;
+    Writer::GetInstance()->Add("_speed_factor(%d)", &_speed_factor, 4, 64, &Panel::_enable );
 }
 
 bool Event::Init()
@@ -59,8 +64,8 @@ void Event::PanUpdate()
 {
     if( _pan_mode )
     {
-        _mouse_delta_x = _mouse_x - _pan_start_x;
-        _mouse_delta_y = _mouse_y - _pan_start_y;
+        _mouse_delta_x = (_mouse_x - _pan_start_x) * _speed_factor;
+        _mouse_delta_y = (_mouse_y - _pan_start_y) * _speed_factor;
 
         PushCommand( PAN_COMMAND );
 
@@ -79,7 +84,7 @@ void Event::ZoomUpdate()
     if( _zoom_mode )
     {
         _mouse_delta_x = 0;
-        _mouse_delta_y = _mouse_y - _zoom_start_pos;
+        _mouse_delta_y = (_mouse_y - _zoom_start_pos) * _speed_factor;
 
         PushCommand( ZOOM_COMMAND );
 
@@ -134,7 +139,11 @@ void Event::KeyEvent( SDL_KeyboardEvent& key )
         case SDLK_ESCAPE:
             PushCommand( QUIT_COMMAND );
             break;
-        
+
+        case SDLK_LSHIFT:
+            _speed_factor = 2;
+            break;
+       
         default:
             break;
     }
@@ -280,6 +289,10 @@ void Event::Poll()
         {
             case SDL_KEYDOWN:
                 KeyEvent( event.key );
+                break;
+
+            case SDL_KEYUP:
+                _speed_factor = 1;
                 break;
 
             case SDL_MOUSEMOTION:

@@ -77,6 +77,7 @@ class Event
 
         bool _pan_mode;
         bool _zoom_mode;
+        int _speed_factor;
         int _pan_start_x;
         int _pan_start_y;
         int _zoom_start_pos;
