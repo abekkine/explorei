@@ -40,8 +40,7 @@ bool Panel::Init( std::string location, int percentage )
     percentage = percentage;
 
     _writer = Writer::GetInstance();
-
-    DisplayVersion();
+    _writer->Add( VERSION_STRING, 4, 16, &Panel::_enable );
 
     return result;
 }
@@ -53,8 +52,7 @@ void Panel::Resize( int width, int height )
     _panel_bottom = height - _margin;
     _panel_top = height * ( 100 - _panel_percent ) / 100.0;
 
-    _versionMsg.x = _panel_left + 4;
-    _versionMsg.y = _panel_top + 16;
+    _writer->UpdateOrigin( _panel_left, _panel_top );
 }
 
 void Panel::Render()
@@ -100,15 +98,5 @@ void Panel::RenderTest()
         glVertex2f( 0.0, 0.1 );
     glEnd();
     glPopMatrix();
-}
-
-void Panel::DisplayVersion()
-{
-    _versionMsg.x = 0;
-    _versionMsg.y = 0;
-    _versionMsg.text = std::string( VERSION_STRING );
-    _versionMsg.control = &Panel::_enable;
-
-    _writer->AddDynamic( &_versionMsg );
 }
 

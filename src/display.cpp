@@ -50,6 +50,7 @@ void Display::Defaults()
 
     // Zoom defaults.
     _zoom_level = 1.0;
+    Writer::GetInstance()->Add( "zoom(%f)", &_zoom_level, 4, 32, &Panel::_enable );
     //DEBUG
     _zoom_levelBG = 1.0;
 

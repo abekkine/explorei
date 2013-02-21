@@ -31,10 +31,7 @@ Writer::~Writer()
     for( _iMessage = _message_list.begin(); _iMessage != _message_list.end(); ++_iMessage )
     {
         _a_message = *_iMessage;
-        if( _a_message->internal == true )
-        {
-            delete _a_message;
-        }
+        delete _a_message;
     }
 
     delete _font;
@@ -59,23 +56,52 @@ bool Writer::Init()
     return result;
 }
 
-void Writer::AddStatic( int x, int y, std::string text )
+void Writer::UpdateOrigin( int x, int y )
+{
+    _origin_x = x;
+    _origin_y = y;
+}
+
+void Writer::Add( std::string text, int x, int y, bool* control )
 {
     MessageDisplayType* new_message = new MessageDisplayType;
 
     new_message->x = x;
     new_message->y = y;
-    new_message->text = text;
-    new_message->internal = true;
+    new_message->type = 'T';
+    new_message->format = text;
+    new_message->value = 0;
+    new_message->control = control;
 
     _message_list.push_back( new_message );
 }
 
-void Writer::AddDynamic( MessageDisplayType* message )
+void Writer::Add( std::string format, int* value, int x, int y, bool* control )
 {
-    message->internal = false;
+    MessageDisplayType* new_message = new MessageDisplayType;
 
-    _message_list.push_back( message );
+    new_message->x = x;
+    new_message->y = y;
+    new_message->type = 'I';
+    new_message->format = format;
+    new_message->value = (void *) value;
+    new_message->control = control;
+
+    _message_list.push_back( new_message );
+}
+
+void Writer::Add( std::string format, double* value, int x, int y, bool* control )
+{
+    MessageDisplayType* new_message = new MessageDisplayType;
+
+    new_message->x = x;
+    new_message->y = y;
+    new_message->type = 'D';
+    new_message->format = format;
+    new_message->value = (void *) value;
+    new_message->control = control;
+
+    _message_list.push_back( new_message );
 }
 
 void Writer::Render()
@@ -85,7 +111,22 @@ void Writer::Render()
         _a_message = *_iMessage;
         if( *(_a_message->control) == true )
         {
-            _font->Print( _a_message->x, _a_message->y, _a_message->text );
+            memset(_text_buffer, 0, 256);
+            switch( _a_message->type ) {
+                case 'T':
+                    strcpy( _text_buffer, _a_message->format.c_str() );
+                    break;
+
+                case 'I':
+                    sprintf( _text_buffer, _a_message->format.c_str(), *((int *) _a_message->value) );
+                    break;
+
+                case 'D':
+                    sprintf( _text_buffer, _a_message->format.c_str(), *((double *) _a_message->value) );
+                    break;
+            }
+
+            _font->Print( _origin_x + _a_message->x, _origin_y + _a_message->y, std::string(_text_buffer) );
         }
     }
 }

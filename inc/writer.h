@@ -8,14 +8,15 @@
 
 class Writer
 {
-    public:
+    private:
         // Types and members.
         typedef struct {
             int x;
             int y;
-            std::string text;
+            char type;
+            std::string format;
+            void * value;
             bool* control;
-            bool internal;
         } MessageDisplayType;
 
     private:
@@ -26,9 +27,11 @@ class Writer
         static Writer* GetInstance();
         ~Writer();
         bool Init();
+        void UpdateOrigin( int x, int y );
         void Render();
-        void AddStatic( int x, int y, std::string text );
-        void AddDynamic( MessageDisplayType* message );
+        void Add( std::string text, int x, int y, bool* control );
+        void Add( std::string format, int* value, int x, int y, bool* control );
+        void Add( std::string format, double* value, int x, int y, bool* control );
         
     private:
         // Methods.
@@ -41,6 +44,9 @@ class Writer
         
     private:
         // Members.
+        int _origin_x;
+        int _origin_y;
+        char _text_buffer[256];
         Font* _font;
         MessageDisplayType* _a_message;
         std::vector< MessageDisplayType* > _message_list;

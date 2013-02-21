@@ -19,7 +19,6 @@ class Panel
         void Defaults();
         void RenderPanel();
         void RenderTest();
-        void DisplayVersion();
 
     public:
         // Control Members
@@ -35,10 +34,6 @@ class Panel
         int _panel_bottom;
         int _panel_top;
         int _panel_percent;
-
-    private:
-        // Messages
-        Writer::MessageDisplayType _versionMsg;
 };
 
 #endif
