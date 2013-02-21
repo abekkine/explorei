@@ -16,7 +16,7 @@ class Star
         // Methods.
         void RenderTest();
         void RenderStarLayer();
-        void RenderSingleStar( double x, double y );
+        void RenderSingleStar( double x, double y, double r, double g, double b );
         void Defaults();
 
     public:

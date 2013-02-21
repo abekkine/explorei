@@ -68,9 +68,9 @@ void Star::RenderTest()
     glEnd();
 }
 
-void Star::RenderSingleStar( double x, double y )
+void Star::RenderSingleStar( double x, double y, double r, double g, double b )
 {
-    glColor3f( 1.0, 1.0, 1.0 );
+    glColor3f( r, g, b );
     glPointSize(2.0);
     glBegin( GL_POINTS );
         glVertex3d( x, y, _zValue );
@@ -88,6 +88,7 @@ void Star::RenderStarLayer()
     double s_value;
     double x_begin_rounded;
     double y_begin_rounded;
+    double x_offset, y_offset;
 
     x_begin = _viewport->left;
     y_begin = _viewport->bottom;
@@ -104,7 +105,9 @@ void Star::RenderStarLayer()
 
             // TODO : magic number
             if( s_value > 0.5 && s_value < 0.6 ) {
-                RenderSingleStar(x_step, y_step);
+                x_offset = _generator->GetValue( x_step, y_step, -52.5 ) * 0.125;
+                y_offset = _generator->GetValue( x_step, y_step, 52.5 ) * 0.125;
+                RenderSingleStar(x_step + x_offset, y_step + y_offset, 1.0, 1.0, 1.0);
             }
         }
     }
