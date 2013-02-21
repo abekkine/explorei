@@ -86,6 +86,8 @@ void Display::Defaults()
     _quit_condition_check = false;
 
     ResetCommandParam();
+    _zoom_total = 0;
+    Writer::GetInstance()->Add("_zoom_total(%d)", &_zoom_total, 4, 48, &Panel::_enable);
 }
 
 bool Display::Init()
@@ -344,6 +346,18 @@ void Display::ProcessCommands()
 
             case Event::ZOOM_COMMAND:
                 _event->GetMouseDelta( NULL, &_zoom_delta );
+                // Limit Zoom
+                // TODO : zoom limits should be moved into configuration file.
+                if( _zoom_delta > 0 ) {
+                    if( (_zoom_total + _zoom_delta) >= 1250 ) {
+                        _zoom_delta = 1250 - _zoom_total;
+                    } 
+                } else if( _zoom_delta < 0 ) {
+                    if( (_zoom_total + _zoom_delta) <= -250 ) {
+                        _zoom_delta = -250 - _zoom_total;
+                    }
+                }
+                _zoom_total += _zoom_delta;
                 Reshape();
                 break;
 

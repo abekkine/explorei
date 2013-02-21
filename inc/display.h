@@ -107,6 +107,7 @@ class Display
         //DEBUG
         double _zoom_levelBG;
         int _zoom_delta;
+        int _zoom_total;
         int _pan_x_delta;
         int _pan_y_delta;
 
